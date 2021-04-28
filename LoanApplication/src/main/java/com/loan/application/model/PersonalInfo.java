@@ -16,13 +16,18 @@ public class PersonalInfo {
 	
 	@Column(name = "Last_Name")
 	String lName;
+	
+	@Column(name = "Address")
 	String address;
+	
+	@Column(name = "Gender")
 	String gender;
 	
 	@Column(name = "DOB")
 	@Temporal(TemporalType.DATE)
 	Date dob;
 	
+	@Column(name = "Mobile")
 	String mobile;
 	
 	@Id
