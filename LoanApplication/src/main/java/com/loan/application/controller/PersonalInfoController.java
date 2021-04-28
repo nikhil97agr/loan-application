@@ -78,21 +78,13 @@ public class PersonalInfoController {
 	@ResponseBody
 	public Status eligibilityIP(@RequestBody EligibilityParameters eligibilityParam){
 		System.out.println(eligibilityParam);
-		Status status = new Status(0, "Successfull");
+		Status status = new Status(1,"Failure");
 		try {
-			if (service2.checkEligibility(eligibilityParam)) {
-				status.setMessage("Successfull");
-			}
-			else {
-				status.setMessage("Failure");
-				status.setStatusCode(1);
-			}
+			status = service2.checkEligibility(eligibilityParam);
 			return status;
 		} catch (Exception ex) {
-			status.setStatusCode(1);
-			status.setMessage(ex.getMessage());
 			GenerateLogs.writeLog(ex.getMessage());
-			System.out.println(ex);	
+			System.out.println(ex);
 			return status;
 		}
 	}

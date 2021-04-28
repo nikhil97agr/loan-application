@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.loan.application.model.EligibilityParameters;
 import com.loan.application.model.PersonalInfo;
+import com.loan.application.model.Status;
 import com.loan.application.repo.EligibilityParametersRepository;
 
 @Service
@@ -13,11 +14,20 @@ public class EligibilityParametersService {
 	EligibilityParametersRepository repository;
 	PersonalInfoService personalService;
 
-	public boolean checkEligibility(EligibilityParameters eligibilityParam) {
+	public Status checkEligibility(EligibilityParameters eligibilityParam) {
 		// TODO Auto-generated method stub
+		Status status = new Status(0, "Successfull");
 		eligibilityParam.getLoanAmt();
 		PersonalInfo pInfo = personalService.getUser(eligibilityParam.getPan());
-		return false;
+		if(pInfo==null)
+		{
+			status.setStatusCode(11);
+			status.setMessage("Pan information does not match any entry");
+			return status;
+		}
+		
+		
+		return status;
 	}
 	
 }
