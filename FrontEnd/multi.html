@@ -1,0 +1,480 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>Loan App</title>
+<link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
+<style>* {
+    margin: 0;
+    padding: 0
+}
+
+html {
+    height: 100%
+}
+
+#grad1 {
+    background-color:  #9C27B0;
+    background-image: linear-gradient(120deg, #FF4081, #81D4FA)
+}
+
+#msform {
+    text-align: center;
+    position: relative;
+    margin-top: 20px
+}
+
+#msform fieldset .form-card {
+    background: white;
+    border: 0 none;
+    border-radius: 0px;
+    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+    padding: 20px 40px 30px 40px;
+    box-sizing: border-box;
+    width: 94%;
+    margin: 0 3% 20px 3%;
+    position: relative
+}
+
+#msform fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative
+}
+
+#msform fieldset:not(:first-of-type) {
+    display: none
+}
+
+#msform fieldset .form-card {
+    text-align: left;
+    color: #9E9E9E
+}
+
+#msform input,
+#msform textarea {
+    padding: 0px 8px 4px 8px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0px;
+    margin-bottom: 25px;
+    margin-top: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
+    font-size: 16px;
+    letter-spacing: 1px
+}
+
+#msform input:focus,
+#msform textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: none;
+    font-weight: bold;
+    border-bottom: 2px solid #673AB7;
+    outline-width: 0
+}
+
+#msform .action-button {
+    width: 120px;
+    background: #673AB7;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 10px;
+    margin: 10px 5px
+}
+
+#msform .action-button:hover,
+#msform .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #673AB7
+}
+
+#msform .action-button-previous {
+    width: 100px;
+    background: #616161;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px
+}
+
+#msform .action-button-previous:hover,
+#msform .action-button-previous:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #616161
+}
+
+select.list-dt {
+    border: none;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    padding: 2px 5px 3px 5px;
+    margin: 2px
+}
+
+select.list-dt:focus {
+    border-bottom: 2px solid skyblue
+}
+
+.card {
+    z-index: 0;
+    border: none;
+    border-radius: 0.5rem;
+    position: relative
+}
+
+.fs-title {
+    font-size: 25px;
+    color: #2C3E50;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: left
+}
+
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey
+}
+
+#progressbar .active {
+    color: #000000
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 12px;
+    width: 32%;
+    float: left;
+    position: relative
+}
+
+#progressbar #Personal:before {
+    font-family: FontAwesome;
+    content: "\f007"
+    
+}
+
+#progressbar #Eligibility:before {
+    font-family: FontAwesome;
+    content: "\f023"
+}
+
+
+#progressbar #confirm:before {
+    font-family: FontAwesome;
+    content: "\f00c"
+}
+
+#progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 18px;
+    color: #ffffff;
+    background: lightgray;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px
+}
+
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: lightgray;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #673AB7
+}
+
+.progress {
+    height: 20px
+}
+
+.progress-bar {
+    background-color: #673AB7
+}
+
+.radio-group {
+    position: relative;
+    margin-bottom: 25px
+}
+
+.radio {
+    display: inline-block;
+    width: 204;
+    height: 104;
+    border-radius: 0;
+    background: #673AB7;
+    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 8px 2px
+}
+
+.radio:hover {
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3)
+}
+
+.radio.selected {
+    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1)
+}
+
+.fit-image {
+    width: 100%;
+    object-fit: cover
+}
+table{
+    margin-left: 55px;
+    width: 100%;
+    
+}
+td {
+    text-align: center;
+}
+
+</style>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+<script type='text/javascript'>$(document).ready(function(){
+
+var current_fs, next_fs, previous_fs; //fieldsets
+var opacity;
+var current = 1;
+var steps = $("fieldset").length;
+
+setProgressBar(current);
+
+$(".next").click(function(){
+
+current_fs = $(this).parent();
+next_fs = $(this).parent().next();
+
+//Add Class Active
+$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+//show the next fieldset
+next_fs.show();
+//hide the current fieldset with style
+current_fs.animate({opacity: 0}, {
+step: function(now) {
+// for making fielset appear animation
+opacity = 1 - now;
+
+current_fs.css({
+'display': 'none',
+'position': 'relative'
+});
+next_fs.css({'opacity': opacity});
+},
+duration: 600
+});
+setProgressBar(++current);
+});
+
+$(".previous").click(function(){
+
+current_fs = $(this).parent();
+previous_fs = $(this).parent().prev();
+
+//Remove class active
+$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+//show the previous fieldset
+previous_fs.show();
+
+//hide the current fieldset with style
+current_fs.animate({opacity: 0}, {
+step: function(now) {
+// for making fielset appear animation
+opacity = 1 - now;
+
+current_fs.css({
+'display': 'none',
+'position': 'relative'
+});
+previous_fs.css({'opacity': opacity});
+},
+duration: 600
+});
+setProgressBar(--current);
+});
+
+function setProgressBar(curStep){
+    var percent = parseFloat(100 / steps) * curStep;
+    percent = percent.toFixed();
+    $(".progress-bar")
+    .css("width",percent+"%")
+}
+
+$('.radio-group .radio').click(function(){
+$(this).parent().find('.radio').removeClass('selected');
+$(this).addClass('selected');
+});
+
+$(".submit").click(function(){
+return false;
+})
+
+});</script>
+ </head>
+<body oncontextmenu='return false' class='snippet-body'>
+                            <!-- MultiStep Form -->
+<div class="container-fluid" id="grad1">
+    <div class="row justify-content-center mt-0">
+        <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
+            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                <h2><strong>Fill details to apply for Loan</strong></h2>
+                <p>Fill all form field to go to next step</p>
+                <div class="row">
+                    <div class="col-md-12 mx-0">
+                        <form id="msform" >
+                            <!-- progressbar -->
+                            <ul id="progressbar">
+                                <li class="active" id="Personal"><strong>Personal</strong></li>
+                                <li id="Eligibility"><strong>Eligibility</strong></li>
+                                <li id="confirm"><strong>Finish</strong></li>
+                            </ul>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div> <br>
+                            <!-- fieldsets -->
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">Personal Information</h2>
+                                    <label class="fieldlabels" for="fName">First Name: <span style="color:red;">*</span></label>
+                                   <input type="text" name="fName" id="fName" placeholder="First Name" required/>
+                                   <label class="fieldlabels" for="lName">Last Name: <span style="color:red;">*</span></label>
+                                   <input type="text" name="lName" id="lName" placeholder="Last Name" required/>
+                                   <label class="fieldlabels" for="gender">Gender: <span style="color:red;" required>*</span></label><br>
+                                    <table >
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <label for="Male">Male</label>
+                                                    <input type="radio" id="Male" name="gender" value="Male">
+                                                </td>
+                                                <td>
+                                                    <label for="Female">Female</label>
+                                                    <input type="radio" id="Female" name="gender" value="Female" />
+                                                </td>
+                                                <td>
+                                                    <label for="Others">Others</label>
+                                                    <input type="radio" id="Others" name="gender" value="Others" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <label for="dob" class="fieldlabels">Date of Birth: <span style="color:red;" >*</span></label>
+                                    <input type="date" id="dob" name="dob" required>
+                                    <label for="phone">Phone number: <span style="color:red;">*</span></label>
+                                    <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" placeholder="Phone number" required>
+                                    <label class="fieldlabels" for="pan">Pan Card <span style="color:red;">*</span></label>
+                                    <input type="text" name="pan" id="pan" placeholder="Pan Number" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" required/>
+                                    <label for="email" class="fieldlabels">Email: <span style="color:red;">*</span></label>
+                                    <input type="email" id="email" name="email" placeholder="Email ID" required>
+                                    <label for="currentCity">Current City: <span style="color:red;">*</span></label>
+                                    <input type="text" id="currentCity" name="currentCity" list="cities" placeholder="Current city" required>
+                                    <datalist id="cities">
+                                        <option value="Chennai">
+                                        <option value="Banglore">
+                                        <option value="Indore">
+                                        <option value="Mumbai">
+                                        <option value="Delhi">
+                                    </datalist>
+                                    <label for="pinCode">Pincode: <span style="color:red;">*</span></label>
+                                    <input type="number" id="pinCode" name="pinCode" list="pincodes" min="452001" max="452005" placeholder="Pincode" required>
+                                    <datalist id="pincodes">
+                                        <option value="452001">
+                                        <option value="452002">
+                                        <option value="452003">
+                                        <option value="452004">
+                                        <option value="452005">
+                                    </datalist>
+                                  
+                                </div> <input type="submit" name="next" class="next action-button" value="Next Step" />
+                            </fieldset>
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">Other details</h2>
+                                    <label class="fieldlabels" for="companyName">Company Name: <span style="color:red;">*</span></label>
+                                    <input type="text" name="companyName" id="companyName" placeholder="Company Name" required/>
+                                    <label class="fieldlabels" for="employementType">Employement Type: <span style="color:red;" required>*</span></label><br>
+                                    <table >
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <label for="Self">Self</label>
+                                                    <input type="radio" id="Self" name="employementType" value="Self">
+                                                </td>
+                                                <td>
+                                                    <label for="Salaried">Salaried</label>
+                                                    <input type="radio" id="Salaried" name="employementType" value="Salaried" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <label for="monthlyIncome">Monthly Income (Rs.): <span style="color:red;">*</span></label>
+                                    <input type="number" id="monthlyIncome" name="monthlyIncome" placeholder="Monthly Income" required>
+                                    <label for="loanAmt">Loan Amount (Rs.): <span style="color:red;">*</span></label>
+                                    <input type="number" id="loanAmt" name="loanAmt" placeholder="Loan Amount" required>
+                                    <label for="currentEmi">Current Emi (Rs.): <span style="color:red;">*</span></label>
+                                    <input type="number" id="currentEmi" name="currentEmi" placeholder="Current Emi" required>
+                                    <label for="currentTenure">Current Tenure (years): <span style="color:red;">*</span></label>
+                                    <input type="number" id="currentTenure" name="currentTenure" placeholder="Current Tenure" required>
+                                    <label for="workExp">Work Experience (months): <span style="color:red;">*</span></label>
+                                    <input type="number" id="workExp" name="workExp" placeholder="Work Experience" required>
+
+                                    <label for="cibilScore">Cibil Score: <span style="color:red;">*</span></label>
+                                    <input type="number" id="cibilScore" name="cibilScore" placeholder="Cibil Score" min="300" max="900" required>
+                                    <label for="minTenure">Mininimum Tenure (years): <span style="color:red;">*</span></label>
+                                    <input type="number" id="minTenure" name="minTenure" placeholder="Mininimum Tenure" min="1" max="10" required>
+
+                                    
+                                </div> <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> <input type="button" name="next" class="next action-button" value="Next Step" />
+                            </fieldset>
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title text-center">Success !</h2> <br><br>
+                                    <div class="row justify-content-center">
+                                        <div class="col-3"> <img src="https://i.imgur.com/GwStPmg.png" class="fit-image"> </div>
+                                    </div> <br><br>
+                                    <div class="row justify-content-center">
+                                        <div class="col-7 text-center">
+                                            <h5>You Have Successfully Signed Up</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                            </body>
+                        </html>
