@@ -1,387 +1,808 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'>
-<title>Loan App</title>
-<link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
-<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
-<style>* {
-    margin: 0;
-    padding: 0
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="front/images/icons/l.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="front/vendor/bootstrap/css/bootstrap.min.css ">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="front/fonts/fontawesome-5.0.8/css/fontawesome-all.min.css ">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="front/fonts/iconic/css/material-design-iconic-font.min.css ">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="front/vendor/animate/animate.css ">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="front/vendor/css-hamburgers/hamburgers.min.css ">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="front/vendor/animsition/css/animsition.min.css ">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="front/css/util.min.css ">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="front/css/main.css ">
+    <!--===============================================================================================-->
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
+    <title>Our Loan App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
 
-html {
-    height: 100%
-}
+        #msform {
+            text-align: center;
+            position: relative;
+            margin-top: 20px
+        }
 
-#grad1 {
-    background-color:  #9C27B0;
-    background-image: linear-gradient(120deg, #FF4081, #81D4FA)
-}
+        #msform fieldset .form-card {
+            background: white;
+            border: 0 none;
+            border-radius: 0px;
+            box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+            padding: 20px 40px 30px 40px;
+            box-sizing: border-box;
+            width: 94%;
+            margin: 0 3% 20px 3%;
+            position: relative
+        }
 
-#msform {
-    text-align: center;
-    position: relative;
-    margin-top: 20px
-}
+        #msform fieldset {
+            background: white;
+            border: 0 none;
+            border-radius: 0.5rem;
+            box-sizing: border-box;
+            width: 100%;
+            margin: 0;
+            padding-bottom: 20px;
+            position: relative
+        }
 
-#msform fieldset .form-card {
-    background: white;
-    border: 0 none;
-    border-radius: 0px;
-    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
-    padding: 20px 40px 30px 40px;
-    box-sizing: border-box;
-    width: 94%;
-    margin: 0 3% 20px 3%;
-    position: relative
-}
+        #msform fieldset:not(:first-of-type) {
+            display: none
+        }
 
-#msform fieldset {
-    background: white;
-    border: 0 none;
-    border-radius: 0.5rem;
-    box-sizing: border-box;
-    width: 100%;
-    margin: 0;
-    padding-bottom: 20px;
-    position: relative
-}
+        #msform fieldset .form-card {
+            text-align: left;
+            color: #9E9E9E
+        }
 
-#msform fieldset:not(:first-of-type) {
-    display: none
-}
+        #msform input,
+        #msform textarea {
+            padding: 0px 8px 4px 8px;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            border-radius: 0px;
+            margin-bottom: 25px;
+            margin-top: 2px;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: montserrat;
+            color: #2C3E50;
+            font-size: 16px;
+            letter-spacing: 1px
+        }
 
-#msform fieldset .form-card {
-    text-align: left;
-    color: #9E9E9E
-}
+        #msform input:focus,
+        #msform textarea:focus {
+            -moz-box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            border: none;
+            font-weight: bold;
+            border-bottom: 2px solid #673AB7;
+            outline-width: 0
+        }
 
-#msform input,
-#msform textarea {
-    padding: 0px 8px 4px 8px;
-    border: none;
-    border-bottom: 1px solid #ccc;
-    border-radius: 0px;
-    margin-bottom: 25px;
-    margin-top: 2px;
-    width: 100%;
-    box-sizing: border-box;
-    font-family: montserrat;
-    color: #2C3E50;
-    font-size: 16px;
-    letter-spacing: 1px
-}
+        #msform .action-button {
+            width: 120px;
+            background: #673AB7;
+            font-weight: bold;
+            color: white;
+            border: 0 none;
+            border-radius: 0px;
+            cursor: pointer;
+            padding: 10px 10px;
+            margin: 10px 5px;
+            display: inline;
+        }
 
-#msform input:focus,
-#msform textarea:focus {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    border: none;
-    font-weight: bold;
-    border-bottom: 2px solid #673AB7;
-    outline-width: 0
-}
+        #msform .action-button:hover,
+        #msform .action-button:focus {
+            box-shadow: 0 0 0 2px white, 0 0 0 3px #673AB7
+        }
 
-#msform .action-button {
-    width: 120px;
-    background: #673AB7;
-    font-weight: bold;
-    color: white;
-    border: 0 none;
-    border-radius: 0px;
-    cursor: pointer;
-    padding: 10px 10px;
-    margin: 10px 5px
-}
+        #msform .action-button-previous {
+            width: 100px;
+            background: #616161;
+            font-weight: bold;
+            color: white;
+            border: 0 none;
+            border-radius: 0px;
+            cursor: pointer;
+            padding: 10px 5px;
+            margin: 10px 5px;
+            display: inline;
+        }
 
-#msform .action-button:hover,
-#msform .action-button:focus {
-    box-shadow: 0 0 0 2px white, 0 0 0 3px #673AB7
-}
+        #msform .action-button-previous:hover,
+        #msform .action-button-previous:focus {
+            box-shadow: 0 0 0 2px white, 0 0 0 3px #616161
+        }
 
-#msform .action-button-previous {
-    width: 100px;
-    background: #616161;
-    font-weight: bold;
-    color: white;
-    border: 0 none;
-    border-radius: 0px;
-    cursor: pointer;
-    padding: 10px 5px;
-    margin: 10px 5px
-}
+        select.list-dt {
+            border: none;
+            outline: 0;
+            border-bottom: 1px solid #ccc;
+            padding: 2px 5px 3px 5px;
+            margin: 2px
+        }
 
-#msform .action-button-previous:hover,
-#msform .action-button-previous:focus {
-    box-shadow: 0 0 0 2px white, 0 0 0 3px #616161
-}
+        select.list-dt:focus {
+            border-bottom: 2px solid skyblue
+        }
 
-select.list-dt {
-    border: none;
-    outline: 0;
-    border-bottom: 1px solid #ccc;
-    padding: 2px 5px 3px 5px;
-    margin: 2px
-}
+        .card {
+            z-index: 0;
+            border: none;
+            border-radius: 0.5rem;
+            position: relative
+        }
 
-select.list-dt:focus {
-    border-bottom: 2px solid skyblue
-}
+        .fs-title {
+            font-size: 25px;
+            color: #2C3E50;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-align: left
+        }
 
-.card {
-    z-index: 0;
-    border: none;
-    border-radius: 0.5rem;
-    position: relative
-}
+        #progressbar {
+            margin-bottom: 30px;
+            overflow: hidden;
+            color: lightgrey
+        }
 
-.fs-title {
-    font-size: 25px;
-    color: #2C3E50;
-    margin-bottom: 10px;
-    font-weight: bold;
-    text-align: left
-}
+        #progressbar .active {
+            color: #000000
+        }
 
-#progressbar {
-    margin-bottom: 30px;
-    overflow: hidden;
-    color: lightgrey
-}
+        #progressbar li {
+            list-style-type: none;
+            font-size: 12px;
+            width: 32%;
+            float: left;
+            position: relative
+        }
 
-#progressbar .active {
-    color: #000000
-}
+        #progressbar #Personal:before {
+            font-family: FontAwesome;
+            content: "\f007"
 
-#progressbar li {
-    list-style-type: none;
-    font-size: 12px;
-    width: 32%;
-    float: left;
-    position: relative
-}
+        }
 
-#progressbar #Personal:before {
-    font-family: FontAwesome;
-    content: "\f007"
-    
-}
-
-#progressbar #Eligibility:before {
-    font-family: FontAwesome;
-    content: "\f023"
-}
+        #progressbar #Eligibility:before {
+            font-family: FontAwesome;
+            content: "\f023"
+        }
 
 
-#progressbar #confirm:before {
-    font-family: FontAwesome;
-    content: "\f00c"
-}
+        #progressbar #confirm:before {
+            font-family: FontAwesome;
+            content: "\f00c"
+        }
 
-#progressbar li:before {
-    width: 50px;
-    height: 50px;
-    line-height: 45px;
-    display: block;
-    font-size: 18px;
-    color: #ffffff;
-    background: lightgray;
-    border-radius: 50%;
-    margin: 0 auto 10px auto;
-    padding: 2px
-}
+        #progressbar li:before {
+            width: 50px;
+            height: 50px;
+            line-height: 45px;
+            display: block;
+            font-size: 18px;
+            color: #ffffff;
+            background: lightgray;
+            border-radius: 50%;
+            margin: 0 auto 10px auto;
+            padding: 2px
+        }
 
-#progressbar li:after {
-    content: '';
-    width: 100%;
-    height: 2px;
-    background: lightgray;
-    position: absolute;
-    left: 0;
-    top: 25px;
-    z-index: -1
-}
+        #progressbar li:after {
+            content: '';
+            width: 100%;
+            height: 2px;
+            background: lightgray;
+            position: absolute;
+            left: 0;
+            top: 25px;
+            z-index: -1
+        }
 
-#progressbar li.active:before,
-#progressbar li.active:after {
-    background: #673AB7
-}
+        #progressbar li.active:before,
+        #progressbar li.active:after {
+            background: #673AB7
+        }
 
-.progress {
-    height: 20px
-}
+        .progress {
+            height: 20px
+        }
 
-.progress-bar {
-    background-color: #673AB7
-}
+        .progress-bar {
+            background-color: #673AB7
+        }
 
-.radio-group {
-    position: relative;
-    margin-bottom: 25px
-}
+        .fit-image {
+            width: 100%;
+            object-fit: cover
+        }
 
-.radio {
-    display: inline-block;
-    width: 204;
-    height: 104;
-    border-radius: 0;
-    background: #673AB7;
-    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
-    box-sizing: border-box;
-    cursor: pointer;
-    margin: 8px 2px
-}
+        table {
+            margin-left: 55px;
+            width: 100%;
 
-.radio:hover {
-    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3)
-}
+        }
 
-.radio.selected {
-    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1)
-}
+        td {
+            text-align: center;
+        }
+    </style>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script type='text/javascript'
+        src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+    <script type='text/javascript'>$(document).ready(function () {
 
-.fit-image {
-    width: 100%;
-    object-fit: cover
-}
-table{
-    margin-left: 55px;
-    width: 100%;
-    
-}
-td {
-    text-align: center;
-}
+            var current_fs, next_fs, previous_fs; //fieldsets
+            var opacity;
+            var current = 1;
+            var steps = $("fieldset").length;
 
-</style>
-<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-<script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
-<script type='text/javascript'>$(document).ready(function(){
+            setProgressBar(current);
 
-var current_fs, next_fs, previous_fs; //fieldsets
-var opacity;
-var current = 1;
-var steps = $("fieldset").length;
+            $(".next").click(function () {
+                first_name = document.getElementById("fName");
+                last_name = document.getElementById("lName");
+                if (first_name == "" || last_name == "") { alert("All Fields are manadatory"); }
+                else {
+                    current_fs = $(this).parent();
+                    next_fs = $(this).parent().next();
 
-setProgressBar(current);
+                    //Add Class Active
+                    $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
-$(".next").click(function(){
+                    //show the next fieldset
+                    next_fs.show();
+                    //hide the current fieldset with style
+                    current_fs.animate({ opacity: 0 }, {
+                        step: function (now) {
+                            // for making fielset appear animation
+                            opacity = 1 - now;
 
-current_fs = $(this).parent();
-next_fs = $(this).parent().next();
+                            current_fs.css({
+                                'display': 'none',
+                                'position': 'relative'
+                            });
+                            next_fs.css({ 'opacity': opacity });
+                        },
+                        duration: 600
+                    });
+                    setProgressBar(++current);
+                }
+            });
 
-//Add Class Active
-$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+            $(".previous").click(function () {
 
-//show the next fieldset
-next_fs.show();
-//hide the current fieldset with style
-current_fs.animate({opacity: 0}, {
-step: function(now) {
-// for making fielset appear animation
-opacity = 1 - now;
+                current_fs = $(this).parent();
+                previous_fs = $(this).parent().prev();
 
-current_fs.css({
-'display': 'none',
-'position': 'relative'
-});
-next_fs.css({'opacity': opacity});
-},
-duration: 600
-});
-setProgressBar(++current);
-});
+                //Remove class active
+                $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
 
-$(".previous").click(function(){
+                //show the previous fieldset
+                previous_fs.show();
 
-current_fs = $(this).parent();
-previous_fs = $(this).parent().prev();
+                //hide the current fieldset with style
+                current_fs.animate({ opacity: 0 }, {
+                    step: function (now) {
+                        // for making fielset appear animation
+                        opacity = 1 - now;
 
-//Remove class active
-$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+                        current_fs.css({
+                            'display': 'none',
+                            'position': 'relative'
+                        });
+                        previous_fs.css({ 'opacity': opacity });
+                    },
+                    duration: 600
+                });
+                setProgressBar(--current);
+            });
 
-//show the previous fieldset
-previous_fs.show();
+            function setProgressBar(curStep) {
+                var percent = parseFloat(100 / steps) * curStep;
+                percent = percent.toFixed();
+                $(".progress-bar")
+                    .css("width", percent + "%")
+            }
 
-//hide the current fieldset with style
-current_fs.animate({opacity: 0}, {
-step: function(now) {
-// for making fielset appear animation
-opacity = 1 - now;
+            $('.radio-group .radio').click(function () {
+                $(this).parent().find('.radio').removeClass('selected');
+                $(this).addClass('selected');
+            });
 
-current_fs.css({
-'display': 'none',
-'position': 'relative'
-});
-previous_fs.css({'opacity': opacity});
-},
-duration: 600
-});
-setProgressBar(--current);
-});
+            $(".submit").click(function () {
+                return false;
+            })
 
-function setProgressBar(curStep){
-    var percent = parseFloat(100 / steps) * curStep;
-    percent = percent.toFixed();
-    $(".progress-bar")
-    .css("width",percent+"%")
-}
+        });</script>
+</head>
 
-$('.radio-group .radio').click(function(){
-$(this).parent().find('.radio').removeClass('selected');
-$(this).addClass('selected');
-});
+<body class="animsition">
 
-$(".submit").click(function(){
-return false;
-})
+    <!-- Header -->
+    <header>
+        <!-- Header desktop -->
+        <div class="container-menu-desktop">
+            <div class="topbar">
+                <div class="content-topbar container h-100">
+                    <div class="left-topbar">
+                        <span class="left-topbar-item flex-wr-s-c">
+                            <span>
+                                Mumbai, India
+                            </span>
 
-});</script>
- </head>
-<body oncontextmenu='return false' class='snippet-body' id="grad1">
-                            <!-- MultiStep Form -->
-<div class="container-fluid" >
-    <div class="row justify-content-center mt-0">
-        <div class="col-12">
-            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
-                <h3 class="card-title" style="text-align: center;">Choose type of loan </h3>
-            </div>
-                <div class="row p-t-35">
-                    <div class="col-4">
-                        
-                            <div class="card">
-                              <a href="multi.html"><img class="card-img-top" src="person.png" alt="Card image cap" width=300px; height=280px;></a>
-                              <div class="card-body">
-                                <h5 class="card-title">Personal Loan</h5>
-                                <p class="card-text">It is a type of unsecured loan that that you can borrow, if you require funds to pay for your financial needs.</p>
-                              </div>
-                            </div>
+                            <img class="m-b-1 m-rl-8" src=" front/images/icons/icon-night.png " alt="IMG">
+
+                            <span>
+                                HI 42° LO 33°
+                            </span>
+                        </span>
+
+                        <a href="#" class="left-topbar-item">
+                            About
+                        </a>
+
+                        <a href=" #" class="left-topbar-item">
+                            Contact
+                        </a>
+
+                        <a href="test.html"><img class="m-b-1 m-rl-8" src=" front/images/icons/loanlogo.png " alt="IMG"
+                            style="width: 80px;height:40px; margin-left:180px;"></a>
                     </div>
-                    <div class="col-4">
-                            <div class="card">
-                              <a href="multi.html"><img class="card-img-top" src="education.jpg" alt="Card image cap" width=300px; height=280px;></a>
-                              <div class="card-body">
-                                <h5 class="card-title">Education Loan</h5>
-                                <p class="card-text">It is designed to help to pay for post-secondary education fees, such as tuition, books and supplies, and living expenses.</p>
-                              </div>
-                            </div>
-                    </div>
-                    <div class="col-4">
-                            <div class="card">
-                              <a href="multi.html"><img class="card-img-top" src="home.jpg" alt="Card image cap" width=300px; height=280px;></a>
-                              <div class="card-body">
-                                <h5 class="card-title">Home Loan</h5>
-                                <p class="card-text">it is an amount of money that an individual borrows at a certain rate of interest to buy one's dream home.</p>
-                              </div>
-                            </div>    
+
+                    <div class="right-topbar">
+                        <a href="#">
+                            <span class="fab fa-facebook-f"></span>
+                        </a>
+
+                        <a href="#">
+                            <span class="fab fa-twitter"></span>
+                        </a>
+
+                        <a href="#">
+                            <span class="fab fa-pinterest-p"></span>
+                        </a>
+
+                        <a href="#">
+                            <span class="fab fa-google-plus"></span>
+                        </a>
+
+                        <a href="#">
+                            <span class="fab fa-youtube"></span>
+                        </a>
                     </div>
                 </div>
-            
+            </div>
+
+            <!-- Header Mobile -->
+            <div class="wrap-header-mobile">
+                <!-- Logo moblie -->
+                <div class="logo-mobile">
+                    <a href="test.html"><img src=" front/images/icons/loanlogo.png " alt="LOGO"></a>
+                </div>
+
+                <!-- Button show menu -->
+                <div class="btn-show-menu-mobile hamburger hamburger--squeeze m-r--8">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Menu Mobile -->
+            <div class="menu-mobile">
+                <ul class="topbar-mobile">
+                    <li class="left-topbar">
+                        <span class="left-topbar-item flex-wr-s-c">
+                            <span>
+                                Mumbai, India
+                            </span>
+
+                            <img class="m-b-1 m-rl-8" src=" front/images/icons/icon-night.png " alt="IMG">
+
+                            <span>
+                                HI 42° LO 33°
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="left-topbar">
+                        <a href="#" class="left-topbar-item">
+                            About
+                        </a>
+
+                        <a href=" #" class="left-topbar-item">
+                            Contact
+                        </a>
+
+                    </li>
+
+                    <li class="right-topbar">
+                        <a href="#">
+                            <span class="fab fa-facebook-f"></span>
+                        </a>
+
+                        <a href="#">
+                            <span class="fab fa-twitter"></span>
+                        </a>
+
+                        <a href="#">
+                            <span class="fab fa-pinterest-p"></span>
+                        </a>
+
+                        <a href="#">
+                            <span class="fa fa-google-plus"></span>
+                        </a>
+
+                        <a href="#">
+                            <span class="fab fa-youtube"></span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="main-menu-m">
+                    <li>
+                        <a href="/">Home</a>
+                        <ul class="sub-menu-m">
+                            <li><a href="#">Homepage v1</a></li>
+
+                        </ul>
+
+                        <span class="arrow-main-menu-m">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </span>
+                    </li>
+
+                    <span class="arrow-main-menu-m">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </span>
+                    </li>
+                </ul>
+            </div>
+
+
+        </div>
+    </header>
+
+    <section class="bg0">
+        <div class="row justify-content-center mt-0">
+            <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
+                <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                    <h2><strong>Fill details to apply for Loan</strong></h2>
+                    <p>Fill all form field to go to next step</p>
+                    <div class="row">
+                        <div class="col-md-12 mx-0">
+                            <form id="msform">
+                                <!-- progressbar -->
+                                <ul id="progressbar">
+                                    <li class="active" id="Personal"><strong>Personal</strong></li>
+                                    <li id="Eligibility"><strong>Eligibility</strong></li>
+                                    <li id="confirm"><strong>Finish</strong></li>
+                                </ul>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                        role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div> <br>
+                                <!-- fieldsets -->
+                                <fieldset>
+                                    <div class="form-card">
+                                        <h2 class="fs-title">Personal Information</h2>
+                                        <label class="fieldlabels" for="fName" style="color:#000000">First Name: <span
+                                                style="color:red;">*</span></label>
+                                        <input type="text" name="fName" id="fName" placeholder="First Name" required />
+                                        <label class="fieldlabels" for="lName" style="color:#000000">Last Name: <span
+                                                style="color:red;">*</span></label>
+                                        <input type="text" name="lName" id="lName" placeholder="Last Name" required />
+                                        <label class="fieldlabels" for="gender" style="color:#000000">Gender: <span
+                                                style="color:red;" required>*</span></label><br>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <label for="Male" style="color:#000000">Male</label>
+                                                        <input type="radio" id="Male" name="gender" value="Male">
+                                                    </td>
+                                                    <td>
+                                                        <label for="Female" style="color:#000000">Female</label>
+                                                        <input type="radio" id="Female" name="gender" value="Female" />
+                                                    </td>
+                                                    <td>
+                                                        <label for="Others" style="color:#000000">Others</label>
+                                                        <input type="radio" id="Others" name="gender" value="Others" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <label for="dob" class="fieldlabels" style="color:#000000">Date of Birth: <span
+                                                style="color:red;">*</span></label>
+                                        <input type="date" id="dob" name="dob" required>
+                                        <label for="phone" style="color:#000000">Phone number: <span
+                                                style="color:red;">*</span></label>
+                                        <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}"
+                                            placeholder="Phone number" required>
+                                        <label class="fieldlabels" for="pan" style="color:#000000">Pan Card <span
+                                                style="color:red;">*</span></label>
+                                        <input type="text" name="pan" id="pan" placeholder="Pan Number"
+                                            pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" required />
+                                        <label for="email" class="fieldlabels" style="color:#000000">Email: <span
+                                                style="color:red;">*</span></label>
+                                        <input type="email" id="email" name="email" placeholder="Email ID" required>
+                                        <label for="currentCity" style="color:#000000">Current City: <span
+                                                style="color:red;">*</span></label>
+                                        <input type="text" id="currentCity" name="currentCity" list="cities"
+                                            placeholder="Current city" required>
+                                        <datalist id="cities">
+                                            <option value="Chennai">
+                                            <option value="Banglore">
+                                            <option value="Indore">
+                                            <option value="Mumbai">
+                                            <option value="Delhi">
+                                        </datalist>
+                                        <label for="pinCode" style="color:#000000">Pincode: <span
+                                                style="color:red;">*</span></label>
+                                        <input type="number" id="pinCode" name="pinCode" list="pincodes" min="452001"
+                                            max="452005" placeholder="Pincode" required>
+                                        <datalist id="pincodes">
+                                            <option value="452001">
+                                            <option value="452002">
+                                            <option value="452003">
+                                            <option value="452004">
+                                            <option value="452005">
+                                        </datalist>
+
+                                    </div> <input type="submit" name="next" class="next action-button"
+                                        value="Next Step" />
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-card">
+                                        <h2 class="fs-title">Other details</h2>
+                                        <label class="fieldlabels" for="companyName" style="color:#000000">Company Name:
+                                            <span style="color:red;">*</span></label>
+                                        <input type="text" name="companyName" id="companyName"
+                                            placeholder="Company Name" required />
+                                        <label class="fieldlabels" for="employementType"
+                                            style="color:#000000">Employement Type: <span style="color:red;"
+                                                required>*</span></label><br>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <label for="Self" style="color:#000000">Self</label>
+                                                        <input type="radio" id="Self" name="employementType"
+                                                            value="Self">
+                                                    </td>
+                                                    <td>
+                                                        <label for="Salaried" style="color:#000000">Salaried</label>
+                                                        <input type="radio" id="Salaried" name="employementType"
+                                                            value="Salaried" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <label for="monthlyIncome" style="color:#000000">Monthly Income (Rs.): <span
+                                                style="color:red;">*</span></label>
+                                        <input type="number" id="monthlyIncome" name="monthlyIncome"
+                                            placeholder="Monthly Income" required>
+                                        <label for="loanAmt" style="color:#000000">Loan Amount (Rs.): <span
+                                                style="color:red;">*</span></label>
+                                        <input type="number" id="loanAmt" name="loanAmt" placeholder="Loan Amount"
+                                            required>
+                                        <label for="currentEmi" style="color:#000000">Current Emi (Rs.): <span
+                                                style="color:red;">*</span></label>
+                                        <input type="number" id="currentEmi" name="currentEmi" placeholder="Current Emi"
+                                            required>
+                                        <label for="currentTenure" style="color:#000000">Current Tenure (years): <span
+                                                style="color:red;">*</span></label>
+                                        <input type="number" id="currentTenure" name="currentTenure"
+                                            placeholder="Current Tenure" required>
+                                        <label for="workExp" style="color:#000000">Work Experience (months): <span
+                                                style="color:red;">*</span></label>
+                                        <input type="number" id="workExp" name="workExp" placeholder="Work Experience"
+                                            required>
+
+                                        <label for="cibilScore" style="color:#000000">Cibil Score: <span
+                                                style="color:red;">*</span></label>
+                                        <input type="number" id="cibilScore" name="cibilScore" placeholder="Cibil Score"
+                                            min="300" max="900" required>
+                                        <label for="minTenure" style="color:#000000">Mininimum Tenure (years): <span
+                                                style="color:red;">*</span></label>
+                                        <input type="number" id="minTenure" name="minTenure"
+                                            placeholder="Mininimum Tenure" min="1" max="10" required>
+
+
+                                    </div> <input type="button" name="previous" class="previous action-button-previous"
+                                        value="Previous" />
+                                    <input type="button" name="next" class="next action-button" value="Next Step" />
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-card">
+                                        <h2 class="fs-title text-center">Success !</h2> <br><br>
+                                        <div class="row justify-content-center">
+                                            <div class="col-3"> <img src="https://i.imgur.com/GwStPmg.png"
+                                                    class="fit-image"> </div>
+                                        </div> <br><br>
+                                        <div class="row justify-content-center">
+                                            <div class="col-7 text-center">
+                                                <h5>You Have Successfully Signed Up</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="bg2 p-t-40 p-b-25" style="margin-top: 40px;">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-6 p-b-20">
+                        <div class="size-h-2 flex-s-c">
+                            <a href="test.html">
+                                <img class="max-s-full" src=" front/images/icons/loanlogo.png " alt="LOGO">
+                            </a>
+                        </div>
+
+                        <div>
+                            <p class="f1-s-1 cl11 p-b-16">
+                                This is a site for taking loans, you can register with us and get your loan approved if
+                                eligible.
+                            </p>
+
+                            <p class="f1-s-1 cl11 p-b-16">
+                                Any questions? Call us on +91-9874563210
+                            </p>
+
+                            <div class="p-t-15">
+                                <a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+                                    <span class="fab fa-facebook-f"></span>
+                                </a>
+
+                                <a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+                                    <span class="fab fa-twitter"></span>
+                                </a>
+
+                                <a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+                                    <span class="fab fa-pinterest-p"></span>
+                                </a>
+
+                                <a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+                                    <span class="fab fa-google-plus"></span>
+                                </a>
+
+                                <a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+                                    <span class="fab fa-youtube"></span>
+                                </a>
+
+
+
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-4 p-b-20" style="margin-left: 40px;">
+                        <div class="size-h-2 flex-s-c">
+                            <h5 class="f1-m-7 cl0">
+                                Types of loans
+                            </h5>
+                        </div>
+
+                        <ul>
+                            <li class="flex-wr-sb-s p-b-20">
+                                <a href="index.html" class="size-w-4 wrap-pic-w hov1 trans-03">
+                                    <img src="personal.png" style="display:inline-block; width:80px; height:50px;"
+                                        alt="Personal Loan">
+                                </a>
+
+                                <div class="size-w-5">
+                                    <h6 class="p-b-5">
+                                        <a href="index.html" class="f1-s-5 cl11 hov-cl10 trans-03">
+                                            Personal Loan
+                                        </a>
+                                    </h6>
+                                </div>
+                            </li>
+                            <li class="flex-wr-sb-s p-b-20">
+                                <a href="#" class="size-w-4 wrap-pic-w hov1 trans-03">
+                                    <img src="education.jpg" style="display:inline-block; width:80px; height:50px;"
+                                        alt="Education Loan">
+                                </a>
+
+                                <div class="size-w-5">
+                                    <h6 class="p-b-5">
+                                        <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03">
+                                            Education Loan
+                                        </a>
+                                    </h6>
+                                </div>
+                            </li>
+                            <li class="flex-wr-sb-s p-b-20">
+                                <a href="#" class="size-w-4 wrap-pic-w hov1 trans-03">
+                                    <img src="home.jpg" style="display:inline-block; width:80px; height:50px;"
+                                        alt="Home Loan">
+                                </a>
+
+                                <div class="size-w-5">
+                                    <h6 class="p-b-5">
+                                        <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03">
+                                            Home Loan
+                                        </a>
+                                    </h6>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="bg11">
+            <div class="container size-h-4 flex-c-c p-tb-15">
+                <span class="f1-s-1 cl0 txt-center">
+                    <a href="#" class="f1-s-1 cl10 hov-link1">Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <div class="btn-back-to-top" id="myBtn">
+        <span class="symbol-btn-back-to-top">
+            <span class="fas fa-angle-up"></span>
+        </span>
+    </div>
+
+    <!-- Modal Video 01-->
+    <div class="modal fade" id="modal-video-01" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document" data-dismiss="modal">
+            <div class="close-mo-video-01 trans-0-4" data-dismiss="modal" aria-label="Close">&times;</div>
+
+            <div class="wrap-video-mo-01">
+
+            </div>
         </div>
     </div>
-</div>
-                            </body>
-                        </html>
+
+    <!--===============================================================================================-->
+    <script src=" front/vendor/jquery/jquery-3.2.1.min.js "></script>
+    <!--===============================================================================================-->
+    <script src=" front/vendor/animsition/js/animsition.min.js "></script>
+    <!--===============================================================================================-->
+    <script src=" front/vendor/bootstrap/js/popper.js "></script>
+    <script src=" front/vendor/bootstrap/js/bootstrap.min.js "></script>
+    <!--===============================================================================================-->
+    <script src=" front/js/main.js "></script>
+
+</body>
+
+</html>

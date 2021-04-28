@@ -28,4 +28,9 @@ public class PersonalInfoService {
 		boolean status = repository.existsById(pan);
 		return status;
 	}
+	
+	public PersonalInfo getUser(String pan) {
+		PersonalInfo user = repository.findById(pan).get();
+		return user;
+	}
 }
