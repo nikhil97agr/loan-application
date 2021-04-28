@@ -10,6 +10,8 @@ public class ResidenceType {
 	String city;
 
 	int own;
+	
+	int pinCode;
 
 	int rent;
 
@@ -45,6 +47,14 @@ public class ResidenceType {
 
 	public void setPayingGuest(int payingGuest) {
 		this.payingGuest = payingGuest;
+	}
+
+	public int getPinCode() {
+		return pinCode;
+	}
+
+	public void setPinCode(int pinCode) {
+		this.pinCode = pinCode;
 	}
 	
 	

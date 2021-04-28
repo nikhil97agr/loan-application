@@ -17,12 +17,17 @@ public class PersonalInfo {
 	@Column(name = "Last_Name")
 	String lName;
 	
+	@Column(name = "Address")
+	String address;
+	
+	@Column(name = "Gender")
 	String gender;
 	
 	@Column(name = "DOB")
 	@Temporal(TemporalType.DATE)
 	Date dob;
 	
+	@Column(name = "Mobile")
 	String mobile;
 	
 	@Id
@@ -106,12 +111,21 @@ public class PersonalInfo {
 	public void setPinCode(int pinCode) {
 		this.pinCode = pinCode;
 	}
+	
+	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 	@Override
 	public String toString() {
-		return "PersonalInfo [fName=" + fName + ", lName=" + lName + ", gender=" + gender + ", dob=" + dob + ", mobile="
-				+ mobile + ", pan=" + pan + ", email=" + email + ", currentCity=" + currentCity + ", pinCode=" + pinCode
-				+ "]";
+		return "PersonalInfo [fName=" + fName + ", lName=" + lName + ", address=" + address + ", gender=" + gender
+				+ ", dob=" + dob + ", mobile=" + mobile + ", pan=" + pan + ", email=" + email + ", currentCity="
+				+ currentCity + ", pinCode=" + pinCode + "]";
 	}
 	
 	
