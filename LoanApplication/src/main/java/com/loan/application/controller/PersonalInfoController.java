@@ -1,11 +1,12 @@
 package com.loan.application.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.loan.application.log.GenerateLogs;
@@ -21,8 +22,7 @@ public class PersonalInfoController {
 
 	//request method to add new user in the database
 	@RequestMapping(value = "/add-user", method = RequestMethod.POST)
-	@ResponseBody
-	public Status addUser(@RequestBody PersonalInfo personalInfo){
+	public ResponseEntity<Status> addUser(@RequestBody PersonalInfo personalInfo){
 		System.out.println(personalInfo);
 		Status status = new Status(0, "Successfull");
 		try {
@@ -33,25 +33,24 @@ public class PersonalInfoController {
 				status.setMessage("Failure");
 				status.setStatusCode(1);
 			}
-			return status;
+			return new ResponseEntity<Status>(status, HttpStatus.OK);
 		} catch (Exception ex) {
 			status.setStatusCode(1);
 			status.setMessage(ex.getMessage());
 			GenerateLogs.writeLog(ex.getMessage());
 			System.out.println(ex);	
-			return status;
+			return new ResponseEntity<Status>(status, HttpStatus.OK);
 		}
 	}
 	
 	@RequestMapping(value = "/check-user", method = RequestMethod.GET)
-	@ResponseBody
-	public Status checkUser(@RequestParam("pan")String pan) {
+	public ResponseEntity<Status> checkUser(@RequestParam("pan")String pan) {
 		Status status = new Status(0, "Successfull");
 		try {
 			
 			if(service.checkUser(pan))
 			{
-				return status;
+				return new ResponseEntity<Status>(status, HttpStatus.OK);
 			}
 			else
 			{
@@ -64,8 +63,8 @@ public class PersonalInfoController {
 			status.setStatusCode(1);
 			status.setMessage(ex.getMessage());
 			GenerateLogs.writeLog(ex.getMessage());
-			return status;
+			return new ResponseEntity<Status>(status, HttpStatus.OK);
 		}
-		return status;
+		return new ResponseEntity<Status>(status, HttpStatus.OK);
 	}
 }
