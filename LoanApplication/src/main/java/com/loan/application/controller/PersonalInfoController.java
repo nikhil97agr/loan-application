@@ -9,15 +9,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.loan.application.log.GenerateLogs;
+import com.loan.application.model.EligibilityParameters;
 import com.loan.application.model.PersonalInfo;
 import com.loan.application.model.Status;
+import com.loan.application.service.EligibilityParametersService;
 import com.loan.application.service.PersonalInfoService;
-		
+
+
 @RestController
 public class PersonalInfoController {
 
 	@Autowired
 	PersonalInfoService service;
+	EligibilityParametersService service2;
 
 	//request method to add new user in the database
 	@RequestMapping(value = "/add-user", method = RequestMethod.POST)
@@ -67,5 +71,29 @@ public class PersonalInfoController {
 			return status;
 		}
 		return status;
+	}
+	
+	
+	@RequestMapping(value = "/EligibilityIP", method = RequestMethod.POST)
+	@ResponseBody
+	public Status eligibilityIP(@RequestBody EligibilityParameters eligibilityParam){
+		System.out.println(eligibilityParam);
+		Status status = new Status(0, "Successfull");
+		try {
+			if (service2.checkEligibility(eligibilityParam)) {
+				status.setMessage("Successfull");
+			}
+			else {
+				status.setMessage("Failure");
+				status.setStatusCode(1);
+			}
+			return status;
+		} catch (Exception ex) {
+			status.setStatusCode(1);
+			status.setMessage(ex.getMessage());
+			GenerateLogs.writeLog(ex.getMessage());
+			System.out.println(ex);	
+			return status;
+		}
 	}
 }
