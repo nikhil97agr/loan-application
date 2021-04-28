@@ -1,5 +1,6 @@
 package com.loan.application.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -13,6 +14,7 @@ public class LoanEligibilityParam {
 	
 	int maxAge;
 	
+	@Column(name = "work_exp_in_months")
 	int workExp;
 	
 	int cibilScore;

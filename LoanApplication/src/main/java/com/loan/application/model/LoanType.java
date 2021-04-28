@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class LaonType {
+public class LoanType {
 
 	@Id
 	String type;

@@ -23,6 +23,7 @@ public class EligibilityParameters {
 	
 	int currentTenure;
 	
+	@Column(name = "work_exp_in_months")
 	int workExp;
 	
 	String residenceType;
