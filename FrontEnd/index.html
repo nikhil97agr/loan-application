@@ -441,7 +441,7 @@
             });
 
             $(".final").click(function () {
-                var delay = 4000; // time in milliseconds
+                var delay = 6000; // time in milliseconds
 
                 company_name = document.getElementById("companyName").value;
 
@@ -512,23 +512,18 @@
                                     }
                                     else if(data.statusCode == 1){
                                         alert("Oops! Something went wrong");
-                                        document.getElementById("message").innerHTML = "Please wait, we are redirecting you to offers.";
+                                        document.getElementById("message1").innerHTML = "Please wait, we are redirecting you to home page.";
                                         setTimeout(function () {
                                             window.location = "test.html";
                                         }, delay);
                                     }
                                     else{
                                         alert(data.message);
-                                        document.getElementById("message").innerHTML = "Please wait, we are redirecting you to offers.";
+                                        document.getElementById("message2").innerHTML = "Please wait, we are redirecting you.";
                                         setTimeout(function () {
-                                            window.location = "finalPage.html";
+                                            window.location = "denialPage.html";
                                         }, delay);
                                     }
-
-
-
-                                    // Display message
-
 
                                 })
                                 .catch((error) => {
@@ -657,7 +652,7 @@
 
                         <a href="test.html"
                             onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
-                            <img class="m-b-1 m-rl-8" src=" front/images/icons/loanlogo.png " alt="IMG"
+                            <img class="m-b-1 m-rl-8" src=" front/images/icons/loan.png " alt="IMG"
                                 style="width: 80px;height:40px; margin-left:180px;"></a>
                     </div>
 
@@ -691,7 +686,7 @@
                 <div class="logo-mobile">
                     <a href="test.html"
                         onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
-                        <img src=" front/images/icons/loanlogo.png " alt="LOGO"></a>
+                        <img src=" front/images/icons/loan.png " alt="LOGO"></a>
                 </div>
 
                 <!-- Button show menu -->
@@ -958,6 +953,8 @@
                                             </div>
                                         </div>
                                         <div class="alert alert-success" id="message"></div>
+                                        <div class="alert alert-danger" id="message1"></div>
+                                        <div class="alert alert-warning" id="message2"></div>
                                     </div>
                                 </fieldset>
                             </form>
@@ -978,7 +975,7 @@
                         <div class="size-h-2 flex-s-c">
                             <a href="test.html"
                                 onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
-                                <img class="max-s-full" src=" front/images/icons/loanlogo.png " alt="LOGO">
+                                <img class="max-s-full" src=" front/images/icons/loan.png " alt="LOGO">
                             </a>
                         </div>
 
