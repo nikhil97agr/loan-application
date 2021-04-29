@@ -251,10 +251,15 @@
     <script type='text/javascript'
         src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
     <script type='text/javascript'>
-        var pincodeSet = new Set();
-        pincodeSet.add("452001");
-        function loadPinCodes(e) {
 
+        var pincodeSet = new Set();
+
+        function loadPinCodes(e) {
+            // var dropDown = document.getElementById("pincodes")
+            // for(var i=0;i<dropDown.length;i++){
+
+            // }
+            pincodeSet.clear();
             var cityArr = [];
             var apiUrl = 'http://localhost:8080/fetch-city';
 
@@ -262,16 +267,18 @@
                 return response.json();
             }).then(data => {
                 cityArr = data;
+                pincodeSet.clear();
                 data.forEach(element => {
                     if (element.city == document.getElementById("currentCity").value) {
-                        console.log(element.pinCode);
+                        pincodeSet.clear();
                         document.getElementById("pinCode").min = element.pinCode;
                         document.getElementById("pinCode").max = element.pinCode + 10;
-                        for (var i = 0; i < 10; i++) {
+                        for (var i = 0; i < 5; i++) {
                             var z = document.createElement("OPTION");
-                            z.setAttribute("value", element.pinCode + i);
+                            var strPin=String(element.pinCode + i)
+                            z.setAttribute("value", strPin);
                             document.getElementById("pincodes").appendChild(z);
-                            pincodeSet.add(element.pinCode+i);
+                            pincodeSet.add(strPin);
                         }
 
                     }
@@ -308,53 +315,45 @@
 
             $(".next").click(function () {
 
-                console.log("next strat");
 
                 first_name = document.getElementById("fName").value;
                 last_name = document.getElementById("lName").value;
-                document.getElementById("showName").setAttribute('value',first_name+" "+last_name);
+                document.getElementById("showName").setAttribute('value', first_name + " " + last_name);
                 document.getElementById("showName").disabled = true;
                 var genderElement = document.getElementsByName('gender');
                 var gender;
                 for (i = 0; i < genderElement.length; i++) {
                     if (genderElement[i].checked) {
                         gender = genderElement[i].value
-                        console.log(genderElement[i].value);
                     }
                 }
 
                 dob = document.getElementById("dob").value;
                 mobile = document.getElementById("mobile").value;
                 pan = document.getElementById("pan").value;
-                pan=pan.toUpperCase();
-                document.getElementById("showPan").setAttribute('value',"XXXXX"+pan.substring(5, 10));
+                pan = pan.toUpperCase();
+                document.getElementById("showPan").setAttribute('value', "XXXXX" + pan.substring(5, 10));
                 document.getElementById("showPan").disabled = true;
                 email = document.getElementById("email").value;
                 city = document.getElementById("currentCity").value;
                 pincode = document.getElementById("pinCode").value;
 
-                console.log(gender, first_name, last_name, dob, mobile, pan, email, city, pincode);
 
 
-
-                if (first_name == "" || last_name == "" || typeof(gender)=="undefined" || dob == "" || pan == "" || email == "" || city == "" || pincode == 0) {
-                    console.log("fierld check");
+                if (first_name == "" || last_name == "" || typeof (gender) == "undefined" || dob == "" || pan == "" || email == "" || city == "" || pincode == 0) {
+                   
                     alert("All Fields are manadatory");
                 }
                 else {
-                    console.log("ok field");
                     if (mobile.length == 10) {
                         //Pan regex
                         var patt = /[A-Z]{5}[0-9]{4}[A-Z]{1}/;
                         if (pan.match(patt)) {
-                            console.log(pan.match(patt));
                             //Email regex
                             patt = /^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$/;
                             if (email.match(patt)) {
-                                console.log(citySet);
-                                if (citySet.has(city)){
-                                    console.log(pincodeSet);
-                                    if (pincodeSet.has(pincode)){
+                                if (citySet.has(city)) {
+                                    if (pincodeSet.has(pincode)) {
                                         //POST=============================================
 
                                         var data = {
@@ -377,11 +376,10 @@
                                             body: JSON.stringify(data),
                                         }).then(response => response.json())
                                             .then(data => {
-                                                console.log('Success:', data);
-                                                if (data.statusCode==2){
+                                                if (data.statusCode == 2) {
                                                     alert("User already exists");
                                                 }
-                                                else if (data.statusCode==1){
+                                                else if (data.statusCode == 1) {
                                                     alert("Registring user failed");
                                                 }
                                             })
@@ -418,11 +416,11 @@
                                         setProgressBar(++current);
 
                                     }
-                                    else{
+                                    else {
                                         alert("Invalid Pincode...Please select from given set");
                                     }
                                 }
-                                else{
+                                else {
                                     alert("Sorry, we are not in this city yet. Please select city from given set");
                                 }
                             }
@@ -445,8 +443,6 @@
             $(".final").click(function () {
                 var delay = 4000; // time in milliseconds
 
-                console.log("next start");
-
                 company_name = document.getElementById("companyName").value;
 
                 var employement_type_element = document.getElementsByName('employementType');
@@ -454,7 +450,6 @@
                 for (i = 0; i < employement_type_element.length; i++) {
                     if (employement_type_element[i].checked) {
                         employement_Type = employement_type_element[i].value
-                        console.log(employement_type_element[i].value);
                     }
                 }
 
@@ -464,23 +459,21 @@
                 current_Tenure = document.getElementById("currentTenure").value;
                 work_Exp = document.getElementById("workExp").value;
                 cibil_Score = document.getElementById("cibilScore").value;
-                min_Tenure = document.getElementById("minTenure").value;residenceType
+                min_Tenure = document.getElementById("minTenure").value; residenceType
                 residence_Type = document.getElementById("residenceType").value;
                 loan_Purpose = document.getElementById("loanPurpose").value;
 
-                console.log(company_name,employement_Type, monthly_Income, loan_Amt, current_Emi, current_Tenure, work_Exp, cibil_Score, min_Tenure,residence_Type,loan_Purpose);
+                console.log(company_name, employement_Type, monthly_Income, loan_Amt, current_Emi, current_Tenure, work_Exp, cibil_Score, min_Tenure, residence_Type, loan_Purpose);
 
 
 
-                if (company_name == "" || loanPurpose == "" || typeof(employement_Type)=="undefined" || residence_Type == "" || monthly_Income == 0 || loan_Amt == 0
-                 || current_Emi == 0 || current_Tenure == 0 || work_Exp == 0 || cibil_Score == 0 || min_Tenure == 0) {
-                    console.log("field check");
+                if (company_name == "" || loanPurpose == "" || typeof (employement_Type) == "undefined" || residence_Type == "" || monthly_Income == 0 || loan_Amt == 0
+                    || current_Emi == 0 || current_Tenure == 0 || work_Exp == 0 || cibil_Score == 0 || min_Tenure == 0) {
                     alert("All Fields are manadatory");
                 }
                 else {
-                    console.log("ok field");
-                    if (min_Tenure<=10 && min_Tenure>0) {
-                        if (residencSet.has(residence_Type)){
+                    if (min_Tenure <= 10 && min_Tenure > 0) {
+                        if (residencSet.has(residence_Type)) {
 
                             //POST=============================================
 
@@ -494,25 +487,34 @@
                                 "workExp": work_Exp,
                                 "residence_Type": residence_Type,
                                 "loanPurpose": loanPurpose,
-                                "cibilScore":cibil_Score,
-                                "minTenure":min_Tenure
-                                    }
+                                "cibilScore": cibil_Score,
+                                "minTenure": min_Tenure
+                            }
 
-                            fetch('http://localhost:8080/add-user', {
+                            fetch('http://localhost:8080/eligibility-check', {
                                 method: 'POST',
                                 headers: {
-                                        'Content-Type': 'application/json',
-                                    },
+                                    'Content-Type': 'application/json',
+                                },
                                 body: JSON.stringify(data),
                             }).then(response => response.json())
                                 .then(data => {
-                                    console.log('Success:', data);
-                                    if (data.statusCode==2){
+                                    if (data.statusCode == 2) {
                                         alert("User already exists");
                                     }
-                                    else if (data.statusCode==1){
+                                    else if (data.statusCode == 1) {
                                         alert("Registring user failed");
                                     }
+
+
+
+                                    // Display message
+                                    // document.getElementById("message").innerHTML = "Please wait, we are redirecting you to offers.";
+
+                                    // setTimeout(function () {
+                                    //     window.location = "offers.html";
+                                    // }, delay);
+
                                 })
                                 .catch((error) => {
                                     console.error('Error:', error);
@@ -551,18 +553,13 @@
                             alert("Select from the given set of residence types");
                         }
                     }
-                    else{
+                    else {
                         alert("Tenure should be in between 1 to 10");
                     }
                 }
-                // Display message
-                document.getElementById("message").innerHTML = "Please wait, we are redirecting you to offers.";
- 
-                setTimeout(function(){
-                window.location = "offers.html";
-                },delay);
+
             });
-            
+
             $(".previous").click(function () {
 
                 current_fs = $(this).parent();
@@ -643,7 +640,8 @@
                             Contact
                         </a>
 
-                        <a href="test.html" onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
+                        <a href="test.html"
+                            onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
                             <img class="m-b-1 m-rl-8" src=" front/images/icons/loanlogo.png " alt="IMG"
                                 style="width: 80px;height:40px; margin-left:180px;"></a>
                     </div>
@@ -676,7 +674,8 @@
             <div class="wrap-header-mobile">
                 <!-- Logo moblie -->
                 <div class="logo-mobile">
-                    <a href="test.html" onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
+                    <a href="test.html"
+                        onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
                         <img src=" front/images/icons/loanlogo.png " alt="LOGO"></a>
                 </div>
 
@@ -823,7 +822,7 @@
                                         <label class="fieldlabels" for="pan" style="color:#000000">Pan Card <span
                                                 style="color:red;">*</span></label>
                                         <input type="text" name="pan" id="pan" placeholder="Pan Number"
-                                            style="text-transform:uppercase"  required />
+                                            style="text-transform:uppercase" required />
                                         <label for="email" class="fieldlabels" style="color:#000000">Email: <span
                                                 style="color:red;">*</span></label>
                                         <input type="email" id="email" name="email" placeholder="Email ID" required>
@@ -840,8 +839,8 @@
                                         </datalist>
                                         <label for="pinCode" style="color:#000000">Pincode: <span
                                                 style="color:red;">*</span></label>
-                                        <input type="number" id="pinCode" name="pinCode" list="pincodes" 
-                                             placeholder="Pincode" required>
+                                        <input type="number" id="pinCode" name="pinCode" list="pincodes"
+                                            placeholder="Pincode" required>
                                         <datalist id="pincodes">
                                         </datalist>
 
@@ -850,13 +849,13 @@
                                 </fieldset>
 
 
-                                
+
                                 <fieldset>
                                     <div class="form-card">
                                         <label class="fieldlabels" for="showName" style="color:#000000">Name: </label>
-                                        <input type="text" name="showName" id="showName"/>
+                                        <input type="text" name="showName" id="showName" />
                                         <label class="fieldlabels" for="showPan" style="color:#000000">PAN: </label>
-                                        <input type="text" name="showPan" id="showPan"/>
+                                        <input type="text" name="showPan" id="showPan" />
                                         <h2 class="fs-title">Other details</h2>
                                         <label class="fieldlabels" for="companyName" style="color:#000000">Company Name:
                                             <span style="color:red;">*</span></label>
@@ -911,20 +910,20 @@
                                         <input type="number" id="minTenure" name="minTenure"
                                             placeholder="Mininimum Tenure" min="1" max="10" required>
                                         <input type="text" id="residenceType" name="residenceType" list="residence"
-                                           placeholder="Residence Type" required>
+                                            placeholder="Residence Type" required>
                                         <datalist id="residence">
                                             <option value="Own by Self/Spouse/Parents">
                                             <option value="Paying Guest">
                                             <option value="Rented a flat">
                                         </datalist>
                                         <input type="text" id="loanPurpose" name="loanPurpose" list="purposes"
-                                           placeholder="Purpose of Loan" required>
+                                            placeholder="Purpose of Loan" required>
                                         <datalist id="purposes">
                                             <option value="For undertaking a professional course">
                                             <option value="For weddings and family functions">
                                             <option value="For financing a vacation">
                                             <option value="For down payments for cars, bikes">
-                                            <option value="For any medical emergencies">        
+                                            <option value="For any medical emergencies">
                                         </datalist>
 
                                     </div> <input type="button" name="previous" class="previous action-button-previous"
@@ -962,7 +961,8 @@
                 <div class="row">
                     <div class="col-lg-6 p-b-20">
                         <div class="size-h-2 flex-s-c">
-                            <a href="test.html" onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
+                            <a href="test.html"
+                                onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
                                 <img class="max-s-full" src=" front/images/icons/loanlogo.png " alt="LOGO">
                             </a>
                         </div>
