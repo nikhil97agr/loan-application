@@ -275,7 +275,7 @@
                         document.getElementById("pinCode").max = element.pinCode + 10;
                         for (var i = 0; i < 5; i++) {
                             var z = document.createElement("OPTION");
-                            var strPin=String(element.pinCode + i)
+                            var strPin = String(element.pinCode + i)
                             z.setAttribute("value", strPin);
                             document.getElementById("pincodes").appendChild(z);
                             pincodeSet.add(strPin);
@@ -341,7 +341,7 @@
 
 
                 if (first_name == "" || last_name == "" || typeof (gender) == "undefined" || dob == "" || pan == "" || email == "" || city == "" || pincode == 0) {
-                   
+
                     alert("All Fields are manadatory");
                 }
                 else {
@@ -453,6 +453,9 @@
                     }
                 }
 
+                pan1 = document.getElementById("pan").value;
+                pan1 = pan.toUpperCase();
+
                 monthly_Income = document.getElementById("monthlyIncome").value;
                 loan_Amt = document.getElementById("loanAmt").value;
                 current_Emi = document.getElementById("currentEmi").value;
@@ -467,7 +470,7 @@
 
 
 
-                if (company_name == "" || loanPurpose == "" || typeof (employement_Type) == "undefined" || residence_Type == "" || monthly_Income == 0 || loan_Amt == 0
+                if (company_name == "" || loan_Purpose == "" || typeof (employement_Type) == "undefined" || residence_Type == "" || monthly_Income == 0 || loan_Amt == 0
                     || current_Emi == 0 || current_Tenure == 0 || work_Exp == 0 || cibil_Score == 0 || min_Tenure == 0) {
                     alert("All Fields are manadatory");
                 }
@@ -479,14 +482,15 @@
 
                             var data = {
                                 "companyName": company_name,
+                                "pan": pan1,
                                 "employementType": employement_Type,
                                 "monthlyIncome": monthly_Income,
                                 "loanAmt": loan_Amt,
                                 "currentEmi": current_Emi,
                                 "currentTenure": current_Tenure,
                                 "workExp": work_Exp,
-                                "residence_Type": residence_Type,
-                                "loanPurpose": loanPurpose,
+                                "residenceType": residence_Type,
+                                "loanPurpose": loan_Purpose,
                                 "cibilScore": cibil_Score,
                                 "minTenure": min_Tenure
                             }
@@ -499,21 +503,32 @@
                                 body: JSON.stringify(data),
                             }).then(response => response.json())
                                 .then(data => {
-                                    if (data.statusCode == 2) {
-                                        alert("User already exists");
+                                    if (data.statusCode == 0) {
+
+                                        document.getElementById("message").innerHTML = "Please wait, we are redirecting you to offers.";
+                                        setTimeout(function () {
+                                            window.location = "offers.html";
+                                        }, delay);
                                     }
-                                    else if (data.statusCode == 1) {
-                                        alert("Registring user failed");
+                                    else if(data.statusCode == 1){
+                                        alert("Oops! Something went wrong");
+                                        document.getElementById("message").innerHTML = "Please wait, we are redirecting you to offers.";
+                                        setTimeout(function () {
+                                            window.location = "test.html";
+                                        }, delay);
+                                    }
+                                    else{
+                                        alert(data.message);
+                                        document.getElementById("message").innerHTML = "Please wait, we are redirecting you to offers.";
+                                        setTimeout(function () {
+                                            window.location = "finalPage.html";
+                                        }, delay);
                                     }
 
 
 
                                     // Display message
-                                    // document.getElementById("message").innerHTML = "Please wait, we are redirecting you to offers.";
 
-                                    // setTimeout(function () {
-                                    //     window.location = "offers.html";
-                                    // }, delay);
 
                                 })
                                 .catch((error) => {
