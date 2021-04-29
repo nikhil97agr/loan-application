@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.loan.application.log.GenerateLogs;
@@ -75,16 +76,16 @@ public class PersonalInfoController {
 	
 	@RequestMapping(value = "/EligibilityIP", method = RequestMethod.POST)
 	@ResponseBody
-	public Status eligibilityIP(@RequestBody EligibilityParameters eligibilityParam){
+	public ResponseEntity<Status> eligibilityIP(@RequestBody EligibilityParameters eligibilityParam){
 		System.out.println(eligibilityParam);
 		Status status = new Status(1,"Failure");
 		try {
 			status = service2.checkEligibility(eligibilityParam);
-			return status;
+			return new ResponseEntity<Status>(status, HttpStatus.OK);
 		} catch (Exception ex) {
 			GenerateLogs.writeLog(ex.getMessage());
 			System.out.println(ex);
-			return status;
+			return new ResponseEntity<Status>(status, HttpStatus.OK);
 		}
 	}
 }
