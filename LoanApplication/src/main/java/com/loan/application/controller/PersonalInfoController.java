@@ -36,7 +36,7 @@ public class PersonalInfoController {
 				status.setStatusCode(2);
 				status.setMessage("User already registered");
 			}
-			if (service.addUser(personalInfo)) {
+			else if (service.addUser(personalInfo)) {
 				status.setMessage("Successfull");
 			}
 			else {
