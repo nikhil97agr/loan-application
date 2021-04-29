@@ -66,6 +66,8 @@ public class EligibilityParametersService {
 			status.setMessage("cibil score less than 650");
 			return status;
 		}
+
+		tenure=tenure*12;
 		
 		double emi;
 		emi=amt*rate*Math.pow((1+rate), tenure)/(Math.pow((1+rate), tenure)-1);
