@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.loan.application.log.GenerateLogs;
+import com.loan.application.model.PersonalInfo;
 import com.loan.application.model.ResidenceType;
 import com.loan.application.repo.ResidenceTypeRepository;
 
@@ -24,6 +25,11 @@ public class ResidenceTypeService {
 			GenerateLogs.writeLog(ex.getMessage());
 			return new ArrayList<ResidenceType>();
 		}
+	}
+	
+	public ResidenceType getResidenceInfo(String city) {
+		ResidenceType residenceInfo = repository.findById(city).get();
+		return residenceInfo;
 	}
 
 }
