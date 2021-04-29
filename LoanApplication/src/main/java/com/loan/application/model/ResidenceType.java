@@ -56,6 +56,15 @@ public class ResidenceType {
 	public void setPinCode(int pinCode) {
 		this.pinCode = pinCode;
 	}
+
+	@Override
+	public String toString() {
+		return "ResidenceType [city=" + city + ", own=" + own + ", pinCode=" + pinCode + ", rent=" + rent
+				+ ", payingGuest=" + payingGuest + "]";
+	}
+	
+	
+	
 	
 	
 	

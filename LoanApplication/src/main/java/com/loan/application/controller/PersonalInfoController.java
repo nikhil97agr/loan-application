@@ -23,6 +23,7 @@ public class PersonalInfoController {
 
 	@Autowired
 	PersonalInfoService service;
+	@Autowired
 	EligibilityParametersService service2;
 
 	//request method to add new user in the database
@@ -31,6 +32,10 @@ public class PersonalInfoController {
 		System.out.println(personalInfo);
 		Status status = new Status(0, "Successfull");
 		try {
+			if(service.checkUser(personalInfo.getPan())) {
+				status.setStatusCode(2);
+				status.setMessage("User already registered");
+			}
 			if (service.addUser(personalInfo)) {
 				status.setMessage("Successfull");
 			}
@@ -74,18 +79,21 @@ public class PersonalInfoController {
 	}
 	
 	
-	@RequestMapping(value = "/EligibilityIP", method = RequestMethod.POST)
-	@ResponseBody
-	public Status eligibilityIP(@RequestBody EligibilityParameters eligibilityParam){
+	@RequestMapping(value = "/eligibility-check", method = RequestMethod.POST)
+	public ResponseEntity<Status> eligibilityIP(@RequestBody EligibilityParameters eligibilityParam){
 		System.out.println(eligibilityParam);
 		Status status = new Status(1,"Failure");
 		try {
 			status = service2.checkEligibility(eligibilityParam);
-			return status;
+			if(status.getStatusCode()==0)
+			{
+				status = service2.saveEligibility(eligibilityParam);
+			}
+			return new ResponseEntity<Status>(status, HttpStatus.OK);
 		} catch (Exception ex) {
 			GenerateLogs.writeLog(ex.getMessage());
 			System.out.println(ex);
-			return status;
+			return new ResponseEntity<Status>(status, HttpStatus.OK);
 		}
 	}
 }
