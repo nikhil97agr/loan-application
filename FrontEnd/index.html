@@ -341,7 +341,39 @@
 
                                 //POST=============================================
 
-                                
+                                var data = {
+                                    "fName": first_name,
+                                    "lName": last_name,
+                                    "gender": gender,
+                                    "dob": dob,
+                                    "mobile": mobile,
+                                    "pan": pan,
+                                    "email": email,
+                                    "currentCity": city,
+                                    "pinCode": pincode
+                                }
+
+                                fetch('http://localhost:8080/add-user', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify(data),
+                                }).then(response => response.json())
+                                    .then(data => {
+                                        console.log('Success:', data);
+                                        if (data.statusCode==2){
+                                            alert("User already exists");
+                                        }
+                                        else if (data.statusCode==1){
+                                            alert("Registring user failed");
+                                        }
+                                    })
+                                    .catch((error) => {
+                                        console.error('Error:', error);
+                                    });
+
+
 
 
 
@@ -669,6 +701,9 @@
                                     </div> <input type="submit" name="next" class="next action-button"
                                         value="Next Step" />
                                 </fieldset>
+
+
+                                
                                 <fieldset>
                                     <div class="form-card">
                                         <h2 class="fs-title">Other details</h2>
