@@ -250,8 +250,9 @@
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script type='text/javascript'
         src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
-    <script type='text/javascript'>$(document).ready(function () {
+    <script type='text/javascript'>
 
+        $(document).ready(function () {
             var current_fs, next_fs, previous_fs; //fieldsets
             var opacity;
             var current = 1;
@@ -260,9 +261,32 @@
             setProgressBar(current);
 
             $(".next").click(function () {
-                first_name = document.getElementById("fName");
-                last_name = document.getElementById("lName");
-                if (first_name == "" || last_name == "") { alert("All Fields are manadatory"); }
+
+                first_name = document.getElementById("fName").value;
+                last_name = document.getElementById("lName").value;
+
+                var genderElement = document.getElementsByName('gender');
+                var gender;
+                for (i = 0; i < genderElement.length; i++) {
+                    if (genderElement[i].checked) {
+                        gender = genderElement[i].value
+                        console.log(genderElement[i].value);
+                    }
+                }
+
+                dob = document.getElementById("dob").value;
+                mobile = document.getElementById("mobile").value;
+                pan = document.getElementById("pan").value;
+                email = document.getElementById("email").value;
+                city = document.getElementById("currentCity").value;
+
+             
+
+
+                console.log(gender);
+                if (false) {
+                    alert("All Fields are manadatory");
+                }
                 else {
                     current_fs = $(this).parent();
                     next_fs = $(this).parent().next();
@@ -334,7 +358,11 @@
                 return false;
             })
 
-        });</script>
+        });
+
+
+
+    </script>
 </head>
 
 <body class="animsition">
@@ -367,7 +395,7 @@
                         </a>
 
                         <a href="test.html"><img class="m-b-1 m-rl-8" src=" front/images/icons/loanlogo.png " alt="IMG"
-                            style="width: 80px;height:40px; margin-left:180px;"></a>
+                                style="width: 80px;height:40px; margin-left:180px;"></a>
                     </div>
 
                     <div class="right-topbar">
