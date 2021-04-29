@@ -252,15 +252,53 @@
         src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
     <script type='text/javascript'>
 
+        function loadPinCodes(e) {
+
+            var cityArr = [];
+            var apiUrl = 'http://localhost:8080/fetch-city';
+
+            fetch(apiUrl).then(response => {
+                return response.json();
+            }).then(data => {
+                cityArr = data;
+                data.forEach(element => {
+                    if (element.city == document.getElementById("currentCity").value) {
+                        console.log(element.pinCode);
+                        document.getElementById("pinCode").min = element.pinCode;
+                        document.getElementById("pinCode").max = element.pinCode + 10;
+                        for (var i = 0; i < 10; i++) {
+                            var z = document.createElement("OPTION");
+                            z.setAttribute("value", element.pinCode + i);
+                            document.getElementById("pincodes").appendChild(z);
+                        }
+
+                    }
+                });
+            }).catch(err => {
+            });
+
+
+            if (!e.keyCode) { // OR: if (e.keyCode === undefined)
+                setTimeout(() => e.target.removeAttribute('style'), 1500);
+            }
+        }
+
         $(document).ready(function () {
+            console.log("start");
+            var pinStart;
             var current_fs, next_fs, previous_fs; //fieldsets
             var opacity;
             var current = 1;
             var steps = $("fieldset").length;
 
+
+
             setProgressBar(current);
 
+
             $(".next").click(function () {
+
+                console.log("next strat");
 
                 first_name = document.getElementById("fName").value;
                 last_name = document.getElementById("lName").value;
@@ -277,40 +315,74 @@
                 dob = document.getElementById("dob").value;
                 mobile = document.getElementById("mobile").value;
                 pan = document.getElementById("pan").value;
+                pan=pan.toUpperCase();
                 email = document.getElementById("email").value;
                 city = document.getElementById("currentCity").value;
+                pincode = document.getElementById("pinCode").value;
 
-             
+                console.log(gender, first_name, last_name, dob, mobile, pan, email, city, pincode);
 
 
-                console.log(gender);
-                if (false) {
+
+                if (first_name == "" || last_name == "" || typeof(gender)=="undefined" || dob == "" || pan == "" || email == "" || city == "" || pincode == 0) {
+                    console.log("fierld check");
                     alert("All Fields are manadatory");
                 }
                 else {
-                    current_fs = $(this).parent();
-                    next_fs = $(this).parent().next();
+                    console.log("ok field");
+                    if (mobile.length == 10) {
+                        //Pan regex
+                        var patt = /[A-Z]{5}[0-9]{4}[A-Z]{1}/;
+                        if (pan.match(patt)) {
+                            console.log(pan.match(patt));
+                            //Email regex
+                            patt = /^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$/;
+                            if (email.match(patt)) {
 
-                    //Add Class Active
-                    $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+                                //POST=============================================
 
-                    //show the next fieldset
-                    next_fs.show();
-                    //hide the current fieldset with style
-                    current_fs.animate({ opacity: 0 }, {
-                        step: function (now) {
-                            // for making fielset appear animation
-                            opacity = 1 - now;
+                                
 
-                            current_fs.css({
-                                'display': 'none',
-                                'position': 'relative'
-                            });
-                            next_fs.css({ 'opacity': opacity });
-                        },
-                        duration: 600
-                    });
-                    setProgressBar(++current);
+
+
+                                current_fs = $(this).parent();
+                                next_fs = $(this).parent().next();
+
+                                //Add Class Active
+                                $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+                                //show the next fieldset
+                                next_fs.show();
+                                //hide the current fieldset with style
+                                current_fs.animate({ opacity: 0 }, {
+                                    step: function (now) {
+                                        // for making fielset appear animation
+                                        opacity = 1 - now;
+
+                                        current_fs.css({
+                                            'display': 'none',
+                                            'position': 'relative'
+                                        });
+                                        next_fs.css({ 'opacity': opacity });
+                                    },
+                                    duration: 600
+                                });
+                                setProgressBar(++current);
+
+                            }
+                            else {
+                                alert("Enter valid Email ID");
+                            }
+
+                        }
+                        else {
+                            alert("Enter valid PAN number");
+                        }
+                    }
+                    else {
+                        alert("Enter valid Mobile number");
+                    }
+
                 }
             });
 
@@ -566,36 +638,32 @@
                                         <input type="date" id="dob" name="dob" required>
                                         <label for="phone" style="color:#000000">Phone number: <span
                                                 style="color:red;">*</span></label>
-                                        <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}"
+                                        <input type="number" id="mobile" name="mobile" maxlength="10"
+                                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                             placeholder="Phone number" required>
                                         <label class="fieldlabels" for="pan" style="color:#000000">Pan Card <span
                                                 style="color:red;">*</span></label>
                                         <input type="text" name="pan" id="pan" placeholder="Pan Number"
-                                            pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" required />
+                                            style="text-transform:uppercase"  required />
                                         <label for="email" class="fieldlabels" style="color:#000000">Email: <span
                                                 style="color:red;">*</span></label>
                                         <input type="email" id="email" name="email" placeholder="Email ID" required>
                                         <label for="currentCity" style="color:#000000">Current City: <span
                                                 style="color:red;">*</span></label>
                                         <input type="text" id="currentCity" name="currentCity" list="cities"
-                                            placeholder="Current city" required>
+                                            onkeyup="loadPinCodes(event)" placeholder="Current city" required>
                                         <datalist id="cities">
                                             <option value="Chennai">
                                             <option value="Banglore">
-                                            <option value="Indore">
+                                            <option value="Hyderbad">
                                             <option value="Mumbai">
-                                            <option value="Delhi">
+                                            <option value="Pune">
                                         </datalist>
                                         <label for="pinCode" style="color:#000000">Pincode: <span
                                                 style="color:red;">*</span></label>
                                         <input type="number" id="pinCode" name="pinCode" list="pincodes" min="452001"
                                             max="452005" placeholder="Pincode" required>
                                         <datalist id="pincodes">
-                                            <option value="452001">
-                                            <option value="452002">
-                                            <option value="452003">
-                                            <option value="452004">
-                                            <option value="452005">
                                         </datalist>
 
                                     </div> <input type="submit" name="next" class="next action-button"
