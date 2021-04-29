@@ -251,7 +251,8 @@
     <script type='text/javascript'
         src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
     <script type='text/javascript'>
-
+        var pincodeSet = new Set();
+        pincodeSet.add("452001");
         function loadPinCodes(e) {
 
             var cityArr = [];
@@ -270,6 +271,7 @@
                             var z = document.createElement("OPTION");
                             z.setAttribute("value", element.pinCode + i);
                             document.getElementById("pincodes").appendChild(z);
+                            pincodeSet.add(element.pinCode+i);
                         }
 
                     }
@@ -290,8 +292,16 @@
             var opacity;
             var current = 1;
             var steps = $("fieldset").length;
-
-
+            var citySet = new Set();
+            citySet.add("Chennai");
+            citySet.add("Mumbai");
+            citySet.add("Pune");
+            citySet.add("Banglore");
+            citySet.add("Hyderabad");
+            var residencSet = new Set();
+            residencSet.add("Own by Self/Spouse/Parents");
+            residencSet.add("Paying Guest");
+            residencSet.add("Rented a flat");
 
             setProgressBar(current);
 
@@ -302,7 +312,8 @@
 
                 first_name = document.getElementById("fName").value;
                 last_name = document.getElementById("lName").value;
-
+                document.getElementById("showName").setAttribute('value',first_name+" "+last_name);
+                document.getElementById("showName").disabled = true;
                 var genderElement = document.getElementsByName('gender');
                 var gender;
                 for (i = 0; i < genderElement.length; i++) {
@@ -316,6 +327,8 @@
                 mobile = document.getElementById("mobile").value;
                 pan = document.getElementById("pan").value;
                 pan=pan.toUpperCase();
+                document.getElementById("showPan").setAttribute('value',"XXXXX"+pan.substring(5, 10));
+                document.getElementById("showPan").disabled = true;
                 email = document.getElementById("email").value;
                 city = document.getElementById("currentCity").value;
                 pincode = document.getElementById("pinCode").value;
@@ -338,69 +351,80 @@
                             //Email regex
                             patt = /^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$/;
                             if (email.match(patt)) {
+                                console.log(citySet);
+                                if (citySet.has(city)){
+                                    console.log(pincodeSet);
+                                    if (pincodeSet.has(pincode)){
+                                        //POST=============================================
 
-                                //POST=============================================
-
-                                var data = {
-                                    "fName": first_name,
-                                    "lName": last_name,
-                                    "gender": gender,
-                                    "dob": dob,
-                                    "mobile": mobile,
-                                    "pan": pan,
-                                    "email": email,
-                                    "currentCity": city,
-                                    "pinCode": pincode
-                                }
-
-                                fetch('http://localhost:8080/add-user', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                    },
-                                    body: JSON.stringify(data),
-                                }).then(response => response.json())
-                                    .then(data => {
-                                        console.log('Success:', data);
-                                        if (data.statusCode==2){
-                                            alert("User already exists");
+                                        var data = {
+                                            "fName": first_name,
+                                            "lName": last_name,
+                                            "gender": gender,
+                                            "dob": dob,
+                                            "mobile": mobile,
+                                            "pan": pan,
+                                            "email": email,
+                                            "currentCity": city,
+                                            "pinCode": pincode
                                         }
-                                        else if (data.statusCode==1){
-                                            alert("Registring user failed");
-                                        }
-                                    })
-                                    .catch((error) => {
-                                        console.error('Error:', error);
-                                    });
+
+                                        fetch('http://localhost:8080/add-user', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                            },
+                                            body: JSON.stringify(data),
+                                        }).then(response => response.json())
+                                            .then(data => {
+                                                console.log('Success:', data);
+                                                if (data.statusCode==2){
+                                                    alert("User already exists");
+                                                }
+                                                else if (data.statusCode==1){
+                                                    alert("Registring user failed");
+                                                }
+                                            })
+                                            .catch((error) => {
+                                                console.error('Error:', error);
+                                            });
 
 
 
 
 
-                                current_fs = $(this).parent();
-                                next_fs = $(this).parent().next();
+                                        current_fs = $(this).parent();
+                                        next_fs = $(this).parent().next();
 
-                                //Add Class Active
-                                $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+                                        //Add Class Active
+                                        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
-                                //show the next fieldset
-                                next_fs.show();
-                                //hide the current fieldset with style
-                                current_fs.animate({ opacity: 0 }, {
-                                    step: function (now) {
-                                        // for making fielset appear animation
-                                        opacity = 1 - now;
+                                        //show the next fieldset
+                                        next_fs.show();
+                                        //hide the current fieldset with style
+                                        current_fs.animate({ opacity: 0 }, {
+                                            step: function (now) {
+                                                // for making fielset appear animation
+                                                opacity = 1 - now;
 
-                                        current_fs.css({
-                                            'display': 'none',
-                                            'position': 'relative'
+                                                current_fs.css({
+                                                    'display': 'none',
+                                                    'position': 'relative'
+                                                });
+                                                next_fs.css({ 'opacity': opacity });
+                                            },
+                                            duration: 600
                                         });
-                                        next_fs.css({ 'opacity': opacity });
-                                    },
-                                    duration: 600
-                                });
-                                setProgressBar(++current);
+                                        setProgressBar(++current);
 
+                                    }
+                                    else{
+                                        alert("Invalid Pincode...Please select from given set");
+                                    }
+                                }
+                                else{
+                                    alert("Sorry, we are not in this city yet. Please select city from given set");
+                                }
                             }
                             else {
                                 alert("Enter valid Email ID");
@@ -418,6 +442,127 @@
                 }
             });
 
+            $(".final").click(function () {
+                var delay = 4000; // time in milliseconds
+
+                console.log("next start");
+
+                company_name = document.getElementById("companyName").value;
+
+                var employement_type_element = document.getElementsByName('employementType');
+                var employement_Type;
+                for (i = 0; i < employement_type_element.length; i++) {
+                    if (employement_type_element[i].checked) {
+                        employement_Type = employement_type_element[i].value
+                        console.log(employement_type_element[i].value);
+                    }
+                }
+
+                monthly_Income = document.getElementById("monthlyIncome").value;
+                loan_Amt = document.getElementById("loanAmt").value;
+                current_Emi = document.getElementById("currentEmi").value;
+                current_Tenure = document.getElementById("currentTenure").value;
+                work_Exp = document.getElementById("workExp").value;
+                cibil_Score = document.getElementById("cibilScore").value;
+                min_Tenure = document.getElementById("minTenure").value;residenceType
+                residence_Type = document.getElementById("residenceType").value;
+                loan_Purpose = document.getElementById("loanPurpose").value;
+
+                console.log(company_name,employement_Type, monthly_Income, loan_Amt, current_Emi, current_Tenure, work_Exp, cibil_Score, min_Tenure,residence_Type,loan_Purpose);
+
+
+
+                if (company_name == "" || loanPurpose == "" || typeof(employement_Type)=="undefined" || residence_Type == "" || monthly_Income == 0 || loan_Amt == 0
+                 || current_Emi == 0 || current_Tenure == 0 || work_Exp == 0 || cibil_Score == 0 || min_Tenure == 0) {
+                    console.log("field check");
+                    alert("All Fields are manadatory");
+                }
+                else {
+                    console.log("ok field");
+                    if (min_Tenure<=10 && min_Tenure>0) {
+                        if (residencSet.has(residence_Type)){
+
+                            //POST=============================================
+
+                            var data = {
+                                "companyName": company_name,
+                                "employementType": employement_Type,
+                                "monthlyIncome": monthly_Income,
+                                "loanAmt": loan_Amt,
+                                "currentEmi": current_Emi,
+                                "currentTenure": current_Tenure,
+                                "workExp": work_Exp,
+                                "residence_Type": residence_Type,
+                                "loanPurpose": loanPurpose,
+                                "cibilScore":cibil_Score,
+                                "minTenure":min_Tenure
+                                    }
+
+                            fetch('http://localhost:8080/add-user', {
+                                method: 'POST',
+                                headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                body: JSON.stringify(data),
+                            }).then(response => response.json())
+                                .then(data => {
+                                    console.log('Success:', data);
+                                    if (data.statusCode==2){
+                                        alert("User already exists");
+                                    }
+                                    else if (data.statusCode==1){
+                                        alert("Registring user failed");
+                                    }
+                                })
+                                .catch((error) => {
+                                    console.error('Error:', error);
+                                });
+
+
+
+
+
+                            current_fs = $(this).parent();
+                            next_fs = $(this).parent().next();
+
+                            //Add Class Active
+                            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+                            //show the next fieldset
+                            next_fs.show();
+                            //hide the current fieldset with style
+                            current_fs.animate({ opacity: 0 }, {
+                                step: function (now) {
+                                    // for making fielset appear animation
+                                    opacity = 1 - now;
+
+                                    current_fs.css({
+                                        'display': 'none',
+                                        'position': 'relative'
+                                    });
+                                    next_fs.css({ 'opacity': opacity });
+                                },
+                                duration: 600
+                            });
+                            setProgressBar(++current);
+
+                        }
+                        else {
+                            alert("Select from the given set of residence types");
+                        }
+                    }
+                    else{
+                        alert("Tenure should be in between 1 to 10");
+                    }
+                }
+                // Display message
+                document.getElementById("message").innerHTML = "Please wait, we are redirecting you to offers.";
+ 
+                setTimeout(function(){
+                window.location = "offers.html";
+                },delay);
+            });
+            
             $(".previous").click(function () {
 
                 current_fs = $(this).parent();
@@ -498,7 +643,8 @@
                             Contact
                         </a>
 
-                        <a href="test.html"><img class="m-b-1 m-rl-8" src=" front/images/icons/loanlogo.png " alt="IMG"
+                        <a href="test.html" onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
+                            <img class="m-b-1 m-rl-8" src=" front/images/icons/loanlogo.png " alt="IMG"
                                 style="width: 80px;height:40px; margin-left:180px;"></a>
                     </div>
 
@@ -530,7 +676,8 @@
             <div class="wrap-header-mobile">
                 <!-- Logo moblie -->
                 <div class="logo-mobile">
-                    <a href="test.html"><img src=" front/images/icons/loanlogo.png " alt="LOGO"></a>
+                    <a href="test.html" onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
+                        <img src=" front/images/icons/loanlogo.png " alt="LOGO"></a>
                 </div>
 
                 <!-- Button show menu -->
@@ -687,14 +834,14 @@
                                         <datalist id="cities">
                                             <option value="Chennai">
                                             <option value="Banglore">
-                                            <option value="Hyderbad">
+                                            <option value="Hyderabad">
                                             <option value="Mumbai">
                                             <option value="Pune">
                                         </datalist>
                                         <label for="pinCode" style="color:#000000">Pincode: <span
                                                 style="color:red;">*</span></label>
-                                        <input type="number" id="pinCode" name="pinCode" list="pincodes" min="452001"
-                                            max="452005" placeholder="Pincode" required>
+                                        <input type="number" id="pinCode" name="pinCode" list="pincodes" 
+                                             placeholder="Pincode" required>
                                         <datalist id="pincodes">
                                         </datalist>
 
@@ -706,6 +853,10 @@
                                 
                                 <fieldset>
                                     <div class="form-card">
+                                        <label class="fieldlabels" for="showName" style="color:#000000">Name: </label>
+                                        <input type="text" name="showName" id="showName"/>
+                                        <label class="fieldlabels" for="showPan" style="color:#000000">PAN: </label>
+                                        <input type="text" name="showPan" id="showPan"/>
                                         <h2 class="fs-title">Other details</h2>
                                         <label class="fieldlabels" for="companyName" style="color:#000000">Company Name:
                                             <span style="color:red;">*</span></label>
@@ -734,10 +885,6 @@
                                                 style="color:red;">*</span></label>
                                         <input type="number" id="monthlyIncome" name="monthlyIncome"
                                             placeholder="Monthly Income" required>
-                                        <label for="loanAmt" style="color:#000000">Loan Amount (Rs.): <span
-                                                style="color:red;">*</span></label>
-                                        <input type="number" id="loanAmt" name="loanAmt" placeholder="Loan Amount"
-                                            required>
                                         <label for="currentEmi" style="color:#000000">Current Emi (Rs.): <span
                                                 style="color:red;">*</span></label>
                                         <input type="number" id="currentEmi" name="currentEmi" placeholder="Current Emi"
@@ -755,15 +902,34 @@
                                                 style="color:red;">*</span></label>
                                         <input type="number" id="cibilScore" name="cibilScore" placeholder="Cibil Score"
                                             min="300" max="900" required>
+                                        <label for="loanAmt" style="color:#000000">Loan Amount (Rs.): <span
+                                                style="color:red;">*</span></label>
+                                        <input type="number" id="loanAmt" name="loanAmt" placeholder="Loan Amount"
+                                            required>
                                         <label for="minTenure" style="color:#000000">Mininimum Tenure (years): <span
                                                 style="color:red;">*</span></label>
                                         <input type="number" id="minTenure" name="minTenure"
                                             placeholder="Mininimum Tenure" min="1" max="10" required>
-
+                                        <input type="text" id="residenceType" name="residenceType" list="residence"
+                                           placeholder="Residence Type" required>
+                                        <datalist id="residence">
+                                            <option value="Own by Self/Spouse/Parents">
+                                            <option value="Paying Guest">
+                                            <option value="Rented a flat">
+                                        </datalist>
+                                        <input type="text" id="loanPurpose" name="loanPurpose" list="purposes"
+                                           placeholder="Purpose of Loan" required>
+                                        <datalist id="purposes">
+                                            <option value="For undertaking a professional course">
+                                            <option value="For weddings and family functions">
+                                            <option value="For financing a vacation">
+                                            <option value="For down payments for cars, bikes">
+                                            <option value="For any medical emergencies">        
+                                        </datalist>
 
                                     </div> <input type="button" name="previous" class="previous action-button-previous"
                                         value="Previous" />
-                                    <input type="button" name="next" class="next action-button" value="Next Step" />
+                                    <input type="button" name="final" class="final action-button" value="Final step" />
                                 </fieldset>
                                 <fieldset>
                                     <div class="form-card">
@@ -777,6 +943,7 @@
                                                 <h5>You Have Successfully Signed Up</h5>
                                             </div>
                                         </div>
+                                        <div class="alert alert-success" id="message"></div>
                                     </div>
                                 </fieldset>
                             </form>
@@ -795,7 +962,7 @@
                 <div class="row">
                     <div class="col-lg-6 p-b-20">
                         <div class="size-h-2 flex-s-c">
-                            <a href="test.html">
+                            <a href="test.html" onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
                                 <img class="max-s-full" src=" front/images/icons/loanlogo.png " alt="LOGO">
                             </a>
                         </div>
@@ -838,58 +1005,6 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-lg-4 p-b-20" style="margin-left: 40px;">
-                        <div class="size-h-2 flex-s-c">
-                            <h5 class="f1-m-7 cl0">
-                                Types of loans
-                            </h5>
-                        </div>
-
-                        <ul>
-                            <li class="flex-wr-sb-s p-b-20">
-                                <a href="index.html" class="size-w-4 wrap-pic-w hov1 trans-03">
-                                    <img src="personal.png" style="display:inline-block; width:80px; height:50px;"
-                                        alt="Personal Loan">
-                                </a>
-
-                                <div class="size-w-5">
-                                    <h6 class="p-b-5">
-                                        <a href="index.html" class="f1-s-5 cl11 hov-cl10 trans-03">
-                                            Personal Loan
-                                        </a>
-                                    </h6>
-                                </div>
-                            </li>
-                            <li class="flex-wr-sb-s p-b-20">
-                                <a href="#" class="size-w-4 wrap-pic-w hov1 trans-03">
-                                    <img src="education.jpg" style="display:inline-block; width:80px; height:50px;"
-                                        alt="Education Loan">
-                                </a>
-
-                                <div class="size-w-5">
-                                    <h6 class="p-b-5">
-                                        <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03">
-                                            Education Loan
-                                        </a>
-                                    </h6>
-                                </div>
-                            </li>
-                            <li class="flex-wr-sb-s p-b-20">
-                                <a href="#" class="size-w-4 wrap-pic-w hov1 trans-03">
-                                    <img src="home.jpg" style="display:inline-block; width:80px; height:50px;"
-                                        alt="Home Loan">
-                                </a>
-
-                                <div class="size-w-5">
-                                    <h6 class="p-b-5">
-                                        <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03">
-                                            Home Loan
-                                        </a>
-                                    </h6>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
 
             </div>
