@@ -129,6 +129,17 @@ public class EligibilityParameters {
 	public void setMinTenure(int minTenure) {
 		this.minTenure = minTenure;
 	}
+
+	@Override
+	public String toString() {
+		return "EligibilityParameters [pan=" + pan + ", companyName=" + companyName + ", employementType="
+				+ employementType + ", monthlyIncome=" + monthlyIncome + ", loanAmt=" + loanAmt + ", currentEmi="
+				+ currentEmi + ", currentTenure=" + currentTenure + ", workExp=" + workExp + ", residenceType="
+				+ residenceType + ", loanPurpose=" + loanPurpose + ", cibilScore=" + cibilScore + ", minTenure="
+				+ minTenure + "]";
+	}
+	
+	
 	
 	
 }

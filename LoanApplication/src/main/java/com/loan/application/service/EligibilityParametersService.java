@@ -1,8 +1,8 @@
 package com.loan.application.service;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,9 @@ import com.loan.application.repo.EligibilityParametersRepository;
 public class EligibilityParametersService {
 	@Autowired
 	EligibilityParametersRepository repository;
+	@Autowired
 	PersonalInfoService personalService;
+	@Autowired
 	ResidenceTypeService residenceService;
 
 	public Status checkEligibility(EligibilityParameters eligibilityParam) {
@@ -33,16 +35,19 @@ public class EligibilityParametersService {
 		}
 		
 		ResidenceType rType = residenceService.getResidenceInfo(pInfo.getCurrentCity());
-		
-		Period period = Period.between(pInfo.getDob().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now());
-		int age = period.getYears();
+//		System.out.println(rType);
+
+//		Period period = Period.between(pInfo.getDob().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now());
+//		System.out.println(period);
+		int age = calculateAge(pInfo.getDob(), new Date());
+		System.out.println(age);
+//		int age = period.getYears();
 		int workex = eligibilityParam.getWorkExp();
 		int cibil = eligibilityParam.getCibilScore();
 		int rate = 11;
 		int tenure = eligibilityParam.getMinTenure();
 		long salary = eligibilityParam.getMonthlyIncome();
 		long currentEmi = eligibilityParam.getCurrentEmi();
-		
 		if(age<21 || age>60)
 		{
 			status.setStatusCode(12);
@@ -61,7 +66,6 @@ public class EligibilityParametersService {
 			status.setMessage("cibil score less than 650");
 			return status;
 		}
-		
 		
 		double emi;
 		emi=amt*rate*Math.pow((1+rate), tenure)/(Math.pow((1+rate), tenure)-1);
@@ -95,6 +99,36 @@ public class EligibilityParametersService {
 		
 		
 		return status;
+	}
+	
+	public Status saveEligibility(EligibilityParameters eligibilityParameters)
+	{
+		Status status = new Status(1, "Data Not Saved");
+		try {
+		EligibilityParameters param = repository.save(eligibilityParameters);
+		if(param!=null)
+		{
+			status.setStatusCode(0);
+			status.setMessage("Successfull");
+		}
+		}catch(Exception ex)
+		{
+			return status;
+		}
+		return status;
+	}
+	
+	private int calculateAge(Date first, Date last) {
+		Calendar a = Calendar.getInstance(Locale.US);
+		a.setTime(first);
+		Calendar b = Calendar.getInstance(Locale.US);
+		b.setTime(last);
+	    int diff = b.get(Calendar.YEAR) - a.get(Calendar.YEAR);
+	    if (a.get(Calendar.MONTH) > b.get(Calendar.MONTH) || 
+	        (a.get(Calendar.MONTH) == b.get(Calendar.MONTH) && a.get(Calendar.DATE) > b.get(Calendar.DATE))) {
+	        diff--;
+	    }
+	    return diff;
 	}
 	
 }
