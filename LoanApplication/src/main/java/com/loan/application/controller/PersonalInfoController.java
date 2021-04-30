@@ -80,6 +80,7 @@ public class PersonalInfoController {
 	
 	
 	@RequestMapping(value = "/eligibility-check", method = RequestMethod.POST)
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ResponseEntity<Status> eligibilityIP(@RequestBody EligibilityParameters eligibilityParam){
 		System.out.println(eligibilityParam);
 		Status status = new Status(1,"Failure");
@@ -98,7 +99,12 @@ public class PersonalInfoController {
 	}
 	
 	@RequestMapping(value = "/fetch-details", method = RequestMethod.GET)
+	@SuppressWarnings({"unchecked","rawtypes"})
 	public ResponseEntity<Status> fetchDetails(@RequestParam("pan")String pan){
-			return null;
+			PersonalInfo info = service.getUser(pan);
+			System.out.println("Data: "+info);
+			Status status = new Status(1, info);
+			
+			return new ResponseEntity<Status>(status, HttpStatus.OK);
 	}
 }
