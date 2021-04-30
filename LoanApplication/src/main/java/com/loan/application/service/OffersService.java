@@ -27,6 +27,7 @@ public class OffersService {
 		
 		double emi;
 		List<OfferDetails> offers = new ArrayList<OfferDetails>();
+		System.out.println();
 		for(int i=0;i<3;i++)
 		{
 			emi=(amt*rate*Math.pow((1+rate), tenure))/(Math.pow((1+rate), tenure)-1);

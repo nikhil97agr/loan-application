@@ -10,11 +10,12 @@ public class LoanDetails {
 	@Column(length = 10)
 	String pan;
 	
-	String fName;
+	String name;
 	
 	double loanAmt;
 	
 	double emi;
+	
 	
 	int tenure;
 
@@ -26,12 +27,12 @@ public class LoanDetails {
 		this.pan = pan;
 	}
 
-	public String getfName() {
-		return fName;
+	public String getName() {
+		return name;
 	}
 
-	public void setfName(String fName) {
-		this.fName = fName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public double getLoanAmt() {
@@ -60,7 +61,7 @@ public class LoanDetails {
 
 	@Override
 	public String toString() {
-		return "LoanDetails [pan=" + pan + ", fName=" + fName + ", loanAmt=" + loanAmt + ", emi=" + emi + ", tenure="
+		return "LoanDetails [pan=" + pan + ", fName=" + name + ", loanAmt=" + loanAmt + ", emi=" + emi + ", tenure="
 				+ tenure + "]";
 	}
 	

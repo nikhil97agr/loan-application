@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.loan.application.log.GenerateLogs;
 import com.loan.application.model.EligibilityParameters;
+import com.loan.application.model.LoanDetails;
 import com.loan.application.model.OfferDetails;
 import com.loan.application.model.PersonalInfo;
 import com.loan.application.model.Status;
@@ -142,4 +143,6 @@ public class PersonalInfoController {
 		
 		return details;
 	}
+	
+	
 }
