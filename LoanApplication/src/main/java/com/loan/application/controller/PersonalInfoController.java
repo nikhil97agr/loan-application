@@ -15,6 +15,7 @@ import com.loan.application.model.EligibilityParameters;
 import com.loan.application.model.PersonalInfo;
 import com.loan.application.model.Status;
 import com.loan.application.service.EligibilityParametersService;
+import com.loan.application.service.OffersService;
 import com.loan.application.service.PersonalInfoService;
 
 
@@ -25,6 +26,8 @@ public class PersonalInfoController {
 	PersonalInfoService service;
 	@Autowired
 	EligibilityParametersService service2;
+	@Autowired
+	OffersService service3;
 
 	//request method to add new user in the database
 	@RequestMapping(value = "/add-user", method = RequestMethod.POST)
@@ -88,6 +91,10 @@ public class PersonalInfoController {
 			if(status.getStatusCode()==0)
 			{
 				status = service2.saveEligibility(eligibilityParam);
+				if(status.getStatusCode()==0)
+				{
+					//status = service3.LoanOffers(eligibilityParam);
+				}
 			}
 			return new ResponseEntity<Status>(status, HttpStatus.OK);
 		} catch (Exception ex) {

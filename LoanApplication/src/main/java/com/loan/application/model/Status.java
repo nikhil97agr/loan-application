@@ -1,11 +1,11 @@
 package com.loan.application.model;
 
-public class Status {
+public class Status<T> {
 	
 	int statusCode;
-	String message;
+	T message;
 	
-	public Status(int statusCode, String message) {
+	public Status(int statusCode, T message) {
 		this.statusCode = statusCode;
 		this.message = message;
 	}
@@ -18,11 +18,11 @@ public class Status {
 		this.statusCode = statusCode;
 	}
 
-	public String getMessage() {
+	public T getMessage() {
 		return message;
 	}
 
-	public void setMessage(String message) {
+	public void setMessage(T message) {
 		this.message = message;
 	}
 
