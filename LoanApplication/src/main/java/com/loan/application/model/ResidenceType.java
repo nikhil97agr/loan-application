@@ -3,6 +3,8 @@ package com.loan.application.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+
+/////Model of ResidenceType and creation of ResidenceType master table
 @Entity
 public class ResidenceType {
 

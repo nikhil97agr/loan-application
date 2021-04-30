@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/////Model of PersonalInfo and creation of PersonalInfo table
 @Entity
 public class PersonalInfo {
 	

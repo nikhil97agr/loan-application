@@ -13,6 +13,7 @@ import com.loan.application.model.LoanDetails;
 import com.loan.application.model.Status;
 import com.loan.application.service.LoanDetailsService;
 
+/////LoanDetailsController for updating the loan information in the LoanDetails table that is fetch from the UI
 @Controller
 public class LoanDetailsController {
 	

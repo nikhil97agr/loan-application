@@ -1,5 +1,7 @@
 package com.loan.application.model;
 
+
+/////Model of Status for passing the object to the front end
 public class Status<T> {
 	
 	int statusCode;

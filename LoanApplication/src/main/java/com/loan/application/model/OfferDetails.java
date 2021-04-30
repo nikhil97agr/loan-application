@@ -1,5 +1,7 @@
 package com.loan.application.model;
 
+
+/////Model of OfferDetails for sending it to the UI
 public class OfferDetails {
 	double tenure;
 	double interest;

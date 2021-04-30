@@ -20,6 +20,7 @@ public class ResidenceTypeController {
 	@Autowired
 	ResidenceTypeService service;
 	
+	/////API for fetching the pinCodes of a particular city
 	@RequestMapping(value = "/fetch-city", method = RequestMethod.GET)
 	public ResponseEntity<List<ResidenceType>> fetchCity(){
 		try {

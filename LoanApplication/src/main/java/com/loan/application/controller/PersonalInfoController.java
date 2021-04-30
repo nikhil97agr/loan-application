@@ -23,6 +23,7 @@ import com.loan.application.service.EligibilityParametersService;
 import com.loan.application.service.OffersService;
 import com.loan.application.service.PersonalInfoService;
 
+
 @RestController
 public class PersonalInfoController {
 
@@ -58,6 +59,7 @@ public class PersonalInfoController {
 		}
 	}
 
+	/////API for checking existing user in the database using the pan as the variable
 	@RequestMapping(value = "/check-user", method = RequestMethod.GET)
 	public ResponseEntity<Status> checkUser(@RequestParam("pan") String pan) {
 		Status status = new Status(0, "Successfull");
@@ -79,6 +81,8 @@ public class PersonalInfoController {
 		return new ResponseEntity<Status>(status, HttpStatus.OK);
 	}
 
+	
+	/////API for checking eligibility of the user using the details provided in the PersonalInfo and and EligibilityParameters forms
 	@RequestMapping(value = "/eligibility-check", method = RequestMethod.POST)
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ResponseEntity<Status> eligibilityIP(@RequestBody EligibilityParameters eligibilityParam) {
@@ -100,6 +104,8 @@ public class PersonalInfoController {
 		}
 	}
 
+	
+	/////API for fetching details of user specific offers
 	@RequestMapping(value = "/fetch-details", method = RequestMethod.GET)
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ResponseEntity<Status> fetchDetails(@RequestParam("pan") String pan) {

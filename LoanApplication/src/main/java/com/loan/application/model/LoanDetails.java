@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+
+/////Model of LoanDetails and creation of LoanDetails table
 @Entity
 public class LoanDetails {
 	@Id

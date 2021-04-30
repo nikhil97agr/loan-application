@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+
+/////Model of EligibilityParameters and creation of EligibilityParameters table
 @Entity
 public class EligibilityParameters {
 	

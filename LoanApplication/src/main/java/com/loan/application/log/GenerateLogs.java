@@ -7,6 +7,8 @@ import java.util.logging.SimpleFormatter;
 
 public final class GenerateLogs {
 	
+	
+	/////class for generating the logs
 	public static void writeLog(String message)
 	{
 		Logger logger = Logger.getLogger("myLogs");

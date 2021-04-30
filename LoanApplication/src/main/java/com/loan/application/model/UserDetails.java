@@ -2,6 +2,9 @@ package com.loan.application.model;
 
 import java.util.List;
 
+
+/////Model of OfferDetails and userdetails combined for sending the object to the front end
+
 public class UserDetails {
 	String name;
 	
