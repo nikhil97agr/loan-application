@@ -3,10 +3,12 @@ package com.loan.application.service;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.loan.application.log.GenerateLogs;
 import com.loan.application.model.EligibilityParameters;
 import com.loan.application.model.PersonalInfo;
 import com.loan.application.model.ResidenceType;
@@ -131,6 +133,18 @@ public class EligibilityParametersService {
 	        diff--;
 	    }
 	    return diff;
+	}
+
+	public EligibilityParameters getParameters(String pan) {
+		try {
+			return repository.findById(pan).get();
+		}catch(NoSuchElementException ex) {
+			GenerateLogs.writeLog(ex.getMessage());
+			return null;
+		}catch(Exception ex) {
+			GenerateLogs.writeLog(ex.getMessage());
+			return null;
+		}
 	}
 	
 }
