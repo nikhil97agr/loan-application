@@ -96,4 +96,9 @@ public class PersonalInfoController {
 			return new ResponseEntity<Status>(status, HttpStatus.OK);
 		}
 	}
+	
+	@RequestMapping(value = "/fetch-details", method = RequestMethod.GET)
+	public ResponseEntity<Status> fetchDetails(@RequestParam("pan")String pan){
+			return null;
+	}
 }
