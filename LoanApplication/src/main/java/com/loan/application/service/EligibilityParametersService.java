@@ -25,7 +25,7 @@ public class EligibilityParametersService {
 	public Status checkEligibility(EligibilityParameters eligibilityParam) {
 		// TODO Auto-generated method stub
 		Status status = new Status(0, "Successfull");
-		long amt = eligibilityParam.getLoanAmt();
+		double amt = eligibilityParam.getLoanAmt();
 		PersonalInfo pInfo = personalService.getUser(eligibilityParam.getPan());
 		if(pInfo==null)
 		{
@@ -44,46 +44,46 @@ public class EligibilityParametersService {
 //		int age = period.getYears();
 		int workex = eligibilityParam.getWorkExp();
 		int cibil = eligibilityParam.getCibilScore();
-		int rate = 11;
-		int tenure = eligibilityParam.getMinTenure();
+		double rate = 11/1200f;
+		double tenure = eligibilityParam.getMinTenure();
 		long salary = eligibilityParam.getMonthlyIncome();
 		long currentEmi = eligibilityParam.getCurrentEmi();
 		if(age<21 || age>60)
 		{
 			status.setStatusCode(12);
-			status.setMessage("age criteria not met");
+			status.setMessage("Age criteria not met");
 			return status;
 		}
 		if(workex<12)
 		{
 			status.setStatusCode(13);
-			status.setMessage("work experience less than 12 months");
+			status.setMessage("Work experience less than 12 months");
 			return status;
 		}
 		if(cibil<650)
 		{
 			status.setStatusCode(14);
-			status.setMessage("cibil score less than 650");
+			status.setMessage("Cibil score less than 650");
 			return status;
 		}
 
 		tenure=tenure*12;
 		
 		double emi;
-		emi=amt*rate*Math.pow((1+rate), tenure)/(Math.pow((1+rate), tenure)-1);
+		emi=(amt*rate*Math.pow((1+rate), tenure))/(Math.pow((1+rate), tenure)-1);
 		System.out.println(emi);
 		
 		int expense=0;
 		String residenceType = eligibilityParam.getResidenceType();
-		if(residenceType.equals("payingGuest"))
+		if(residenceType.equals("Paying Guest"))
 		{
 			expense = rType.getPayingGuest();
 		}
-		else if(residenceType.equals("own"))
+		else if(residenceType.equals("Own by Self/Spouse/Parents"))
 		{
 			expense = rType.getOwn();
 		}
-		else if(residenceType.equals("rent"))
+		else if(residenceType.equals("Rented a flat"))
 		{
 			expense = rType.getRent();
 		}

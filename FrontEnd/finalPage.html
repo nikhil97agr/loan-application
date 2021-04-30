@@ -23,6 +23,28 @@
 	<link rel="stylesheet" type="text/css" href="front/css/main.css ">
 <!--===============================================================================================-->
 <title>Our Loan App</title>
+<style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      margin: 0px;
+      padding: 0px;
+    }
+    
+    td, th {
+      border: 2px solid #dddddd;
+      text-align: center;
+      padding: 8px;
+      color: black;
+      font-size: medium;
+      margin: 0px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #d9d7d2;
+    }
+    </style>
 </head>
 <body class="animsition">
 	
@@ -53,7 +75,8 @@
 							Contact
 						</a>
 
-					<a href="#"><img class="m-b-1 m-rl-8" src=" front/images/icons/loan.png " alt="IMG" style="width: 80px;height:40px; margin-left:180px;"></a>
+					<a href="test.html" onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
+                        <img class="m-b-1 m-rl-8" src=" front/images/icons/loan.png " alt="IMG" style="width: 80px;height:40px; margin-left:180px;"></a>
 					</div>
 
 					<div class="right-topbar">
@@ -84,7 +107,8 @@
 			<div class="wrap-header-mobile">
 				<!-- Logo moblie -->		
 				<div class="logo-mobile">
-					<a href="/"><img src=" front/images/icons/loan.png " alt="LOGO"></a>
+					<a href="test.html" onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
+                        <img src=" front/images/icons/loan.png " alt="LOGO"></a>
 				</div>
 
 				<!-- Button show menu -->
@@ -172,39 +196,36 @@
     
 	<section class="bg0">
 		<div class="card">
-			<div class="card-body" style="text-align: center;">
-			  Our Products...
+			<div class="card-body" style="text-align: center;font-size:larger;color:darkmagenta;">
+			  Congratulations!!! Your loan is approved....
 			</div>
 		  </div>
-		<div class="row m-rl-0 justify-content-center"style="margin-top:50px;">
+		<div class="row m-rl-10 justify-content-center"style="margin-top:50px;">
+            <div class="card" style="width: 18rem;margin-right:50px;">
+                <img src="front/images/loanApproved.jpg" alt="loan approved">
+            </div>   
+        </div>
+		<div class="row m-rl-10 justify-content-center"style="margin-top:50px;">
 			
-			<div class="cols-12">
-				<div class="row">
-					<div class="card" style="width: 21rem;">
-						<a href="index.html"><img class="card-img-top" src="front/images/personal.png" alt="Card image cap" height=250px;></a>
-						<div class="card-body">
-							<a href="index.html" style="color: black;" id="hov"><h5 class="card-title"><strong>Personal Loan</strong></h5></a>
-						  <p class="card-text">It is a type of unsecured loan that that you can borrow, if you require funds to pay for your financial needs.</p>
-						</div>
-					</div>
-					<div class="card" style="width: 21rem; margin-left:25px;">
-						<img class="card-img-top" src="front/images/education.jpg" alt="Card image cap" height=250px;>
-						<div class="card-body">
-							<h5 class="card-title" style="color: black;"><strong>Education Loan</strong></h5>
-							<p class="card-text">It is designed to help to pay for post-secondary education fees, such as tuition, books and supplies, and living expenses.</p>
-						</div>
-					</div>
-					<div class="card" style="width: 21rem;margin-left:25px;">
-						<img class="card-img-top" src="front/images/home.jpg" alt="Card image cap" height=250px;>
-						<div class="card-body">
-							<h5 class="card-title" style="color: black;"><strong>Home Loan</strong></h5>
-							<p class="card-text">it is an amount of money that an individual borrows at a certain rate of interest to buy one's dream home.</p>
-						</div>
-					</div>
-				</div>
-			</div>
+			<div class="card" style="width: 67.5rem;">
+                <div class="card-header">
+                  Your details
+                </div>
+                <ul class="list-group list-group-flush" style="margin: 0px;padding: 0px;">
+                  <li class="list-group-item" style="margin: 0px;padding: 0px;">
+                      <table>
+                          <tr><td>Name: </td><td>Nihar Tiwari</td></tr>
+                          <tr><td>Email: </td><td>abc@gmail.com</td></tr>
+                          <tr><td>Company Name: </td><td>LTI</td></tr>
+                          <tr><td>Current City: </td><td>Indore</td></tr>
+                          <tr><td>Loan Amount: </td><td>500000 at 11% for 3 years</td></tr>
+                      </table>
+                  </li>
+                </ul>
+            </div>
 			
 		</div>
+        
 </section>
    
     <!-- Footer -->
@@ -215,8 +236,8 @@
                     <div class="row">
                         <div class="col-lg-6 p-b-20">
                             <div class="size-h-2 flex-s-c">
-                                <a href="#">
-                                    <img class="max-s-full" src=" front/images/icons/loan.png " alt="LOGO">
+                                <a href="test.html" onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
+                                    <img class="max-s-full" src=" front/images/icons/loan.png " style="width: 120px;height:80px" alt="LOGO">
                                 </a>
                             </div>
     
@@ -257,55 +278,7 @@
                             </div>
                         </div>
     
-                        <div class="col-sm-6 col-lg-4 p-b-20" style="margin-left: 40px;">
-                            <div class="size-h-2 flex-s-c">
-                                <h5 class="f1-m-7 cl0">
-                                   Types of loans
-                                </h5>
-                            </div>
-    
-                            <ul>
-                                <li class="flex-wr-sb-s p-b-20">
-                                    <a href="index.html" class="size-w-4 wrap-pic-w hov1 trans-03">
-                                        <img src="front/images/personal.png" style="display:inline-block; width:80px; height:50px;" alt="Personal Loan">
-                                    </a>
-    
-                                    <div class="size-w-5">
-                                        <h6 class="p-b-5">
-                                            <a href="index.html" class="f1-s-5 cl11 hov-cl10 trans-03">
-                                                Personal Loan
-                                            </a>
-                                        </h6>
-                                    </div>
-                                </li>
-								<li class="flex-wr-sb-s p-b-20">
-                                    <a href="#" class="size-w-4 wrap-pic-w hov1 trans-03">
-                                        <img src="front/images/education.jpg" style="display:inline-block; width:80px; height:50px;" alt="Education Loan">
-                                    </a>
-    
-                                    <div class="size-w-5">
-                                        <h6 class="p-b-5">
-                                            <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03">
-                                                Education Loan
-                                            </a>
-                                        </h6>
-                                    </div>
-                                </li>
-								<li class="flex-wr-sb-s p-b-20">
-                                    <a href="#" class="size-w-4 wrap-pic-w hov1 trans-03">
-                                        <img src="front/images/home.jpg" style="display:inline-block; width:80px; height:50px;" alt="Home Loan">
-                                    </a>
-    
-                                    <div class="size-w-5">
-                                        <h6 class="p-b-5">
-                                            <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03">
-                                                Home Loan
-                                            </a>
-                                        </h6>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+
 					</div>
 				
                 </div>
