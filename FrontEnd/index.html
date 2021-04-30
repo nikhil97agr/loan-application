@@ -507,7 +507,7 @@
 
                                         document.getElementById("message").innerHTML = "Please wait, we are redirecting you to offers.";
                                         setTimeout(function () {
-                                            window.location = "offers.html";
+                                            window.location = "offers.html?pan="+pan1;
                                         }, delay);
                                     }
                                     else if(data.statusCode == 1){
@@ -521,7 +521,7 @@
                                         alert(data.message);
                                         document.getElementById("message2").innerHTML = "Please wait, we are redirecting you.";
                                         setTimeout(function () {
-                                            window.location = "denialPage.html";
+                                            window.location = "denialPage.html?pan="+pan1;
                                         }, delay);
                                     }
 

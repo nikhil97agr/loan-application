@@ -1,55 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="front/images/icons/l.ico"/>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="front/images/icons/l.ico" />
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="front/vendor/bootstrap/css/bootstrap.min.css ">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="front/fonts/fontawesome-5.0.8/css/fontawesome-all.min.css ">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="front/fonts/iconic/css/material-design-iconic-font.min.css ">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="front/vendor/animate/animate.css ">
-<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="front/vendor/css-hamburgers/hamburgers.min.css ">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="front/vendor/animsition/css/animsition.min.css ">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="front/css/util.min.css ">
-<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="front/css/main.css ">
-<!--===============================================================================================-->
-<title>Our Loan App</title>
-<style>
-    table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-      width: 100%;
-      margin: 0px;
-      padding: 0px;
-    }
-    
-    td, th {
-      border: 2px solid #dddddd;
-      text-align: center;
-      padding: 8px;
-      color: black;
-      font-size: medium;
-      margin: 0px;
-    }
-    
-    tr:nth-child(even) {
-      background-color: #d9d7d2;
-    }
-    </style>
+	<!--===============================================================================================-->
+	<title>Our Loan App</title>
+	<style>
+		table {
+			font-family: arial, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+			margin: 0px;
+			padding: 0px;
+		}
+
+		td,
+		th {
+			border: 2px solid #dddddd;
+			text-align: center;
+			padding: 8px;
+			color: black;
+			font-size: medium;
+			margin: 0px;
+		}
+
+		tr:nth-child(even) {
+			background-color: #d9d7d2;
+		}
+	</style>
+
+
+
 </head>
+
 <body class="animsition">
-	
+
+	<script>
+		const queryString = window.location.search;
+		console.log(queryString);
+		const urlParams = new URLSearchParams(queryString);
+		const pan = urlParams.get("pan");
+		console.log(pan);
+
+		function toFinal() {
+			console.log(this);
+		}
+
+	</script>
 	<!-- Header -->
 	<header>
+
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
 			<div class="topbar">
@@ -75,8 +94,10 @@
 							Contact
 						</a>
 
-					<a href="test.html" onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
-                        <img class="m-b-1 m-rl-8" src=" front/images/icons/loan.png " alt="IMG" style="width: 80px;height:40px; margin-left:180px;"></a>
+						<a href="test.html"
+							onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
+							<img class="m-b-1 m-rl-8" src=" front/images/icons/loan.png " alt="IMG"
+								style="width: 80px;height:40px; margin-left:180px;"></a>
 					</div>
 
 					<div class="right-topbar">
@@ -93,7 +114,7 @@
 						</a>
 
 						<a href="#">
-							<span class="fab fa-google-plus" ></span>
+							<span class="fab fa-google-plus"></span>
 						</a>
 
 						<a href="#">
@@ -105,10 +126,11 @@
 
 			<!-- Header Mobile -->
 			<div class="wrap-header-mobile">
-				<!-- Logo moblie -->		
+				<!-- Logo moblie -->
 				<div class="logo-mobile">
-					<a href="test.html" onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
-                        <img src=" front/images/icons/loan.png " alt="LOGO"></a>
+					<a href="test.html"
+						onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
+						<img src=" front/images/icons/loan.png " alt="LOGO"></a>
 				</div>
 
 				<!-- Button show menu -->
@@ -144,7 +166,7 @@
 						<a href=" #" class="left-topbar-item">
 							Contact
 						</a>
-						
+
 					</li>
 
 					<li class="right-topbar">
@@ -175,179 +197,204 @@
 						<a href="/">Home</a>
 						<ul class="sub-menu-m">
 							<li><a href="#">Homepage v1</a></li>
-							
+
 						</ul>
 
 						<span class="arrow-main-menu-m">
 							<i class="fa fa-angle-right" aria-hidden="true"></i>
 						</span>
-					</li>					
+					</li>
 
-						<span class="arrow-main-menu-m">
-							<i class="fa fa-angle-right" aria-hidden="true"></i>
-						</span>
+					<span class="arrow-main-menu-m">
+						<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</span>
 					</li>
 				</ul>
 			</div>
-	
-				
+
+
 		</div>
-    </header>
-    
+	</header>
+
 	<section class="bg0">
 		<div class="card">
 			<div class="card-body" style="text-align: center;font-size:large;color:darkmagenta;">
-			  Congratulations!!! You are eligible for loan....
+				Congratulations!!! You are eligible for loan....
 			</div>
-		  </div>
-		<div class="row m-rl-10 justify-content-center"style="margin-top:50px;">
-			
+		</div>
+		<div class="row m-rl-10 justify-content-center" style="margin-top:50px;">
+
 			<div class="card" style="width: 67.5rem;">
-                <div class="card-header">
-                  Your details
-                </div>
-                <ul class="list-group list-group-flush" style="margin: 0px;padding: 0px;">
-                  <li class="list-group-item" style="margin: 0px;padding: 0px;">
-                      <table>
-                          <tr><td>Name: </td><td>Nihar Tiwari</td></tr>
-                          <tr><td>Email: </td><td>abc@gmail.com</td></tr>
-                          <tr><td>Company Name: </td><td>LTI</td></tr>
-                          <tr><td>Current City: </td><td>Indore</td></tr>
-                          <tr><td>Loan Amount: </td><td>500000</td></tr>
-                      </table>
-                  </li>
-                </ul>
-            </div>
-			
+				<div class="card-header">
+					Your details
+				</div>
+				<ul class="list-group list-group-flush" style="margin: 0px;padding: 0px;">
+					<li class="list-group-item" style="margin: 0px;padding: 0px;">
+						<table>
+							<tr>
+								<td>Name: </td>
+								<td>Nihar Tiwari</td>
+							</tr>
+							<tr>
+								<td>Email: </td>
+								<td>abc@gmail.com</td>
+							</tr>
+							<tr>
+								<td>Company Name: </td>
+								<td>LTI</td>
+							</tr>
+							<tr>
+								<td>Current City: </td>
+								<td>Indore</td>
+							</tr>
+							<tr>
+								<td>Loan Amount: </td>
+								<td>500000</td>
+							</tr>
+						</table>
+					</li>
+				</ul>
+			</div>
+
 		</div>
-        <div class="card" style="margin-top:50px;">
+
+
+		<div class="card" style="margin-top:50px;">
 			<div class="card-body" style="text-align: center;font-size:large;color:darkmagenta;">
-			  !!!!!!!!!!Best Offers available for You!!!!!!!!!!
+				!!!!!!!!!!  Best Offers available for You  !!!!!!!!!!
 			</div>
 		</div>
-        <div class="row m-rl-10 justify-content-center"style="margin-top:50px;">
-            <div class="card" style="width: 18rem;margin-right:50px;">
-                <a href="finalPage.html" onclick="return confirm('Are you sure? You want to continue')">
-                <div class="card-body" style="background-color:lightblue;">
-                <h5 class="card-title" style="text-align: center;font-size:large;color:rgb(5, 5, 5);">2 years </h5>
-                <h6 class="card-subtitle mb-2 text-muted" style="color: black;">Interest : 11% </h6>
-                <p class="card-text" style="color: black;">EMI : Rs. 1234</p>
-                </div>
-            </div>
-            </a>
-            <div class="card" style="width: 18rem; margin-left:50px;margin-right:50px;">
-                <a href="finalPage.html" onclick="return confirm('Are you sure? You want to continue')">
-                <div class="card-body" style="background-color: aqua;">
-                <h5 class="card-title"  style="text-align: center;font-size:large;color:rgb(0, 0, 0);">5 years</h5>
-                <h6 class="card-subtitle mb-2 text-muted" style="color: black;">Interest : 11% </h6>
-                <p class="card-text" style="color: black;">EMI : Rs. 1234</p>
-                </div>
-            </div>
-            </a>
-            <div class="card" style="width: 18rem;margin-left:50px;">
-                <a href="finalPage.html" onclick="return confirm('Are you sure? You want to continue')">
-                <div class="card-body" style="background-color:bisque;">
-                <h5 class="card-title"  style="text-align: center;font-size:large;color:rgb(0, 0, 0);">7 years</h5>
-                <h6 class="card-subtitle mb-2 text-muted" style="color: black;">Interest : 11% </h6>
-                <p class="card-text" style="color: black;">EMI : Rs. 1234</p>
-                </div>
-            </div>
-            </a>    
-        </div>
-</section>
-   
-    <!-- Footer -->
-	<footer>
-            <div class="bg2 p-t-40 p-b-25" style="margin-top: 40px;">
-                <div class="container">
-				
-                    <div class="row">
-                        <div class="col-lg-6 p-b-20">
-                            <div class="size-h-2 flex-s-c">
-                                <a href="test.html" onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
-                                    <img class="max-s-full" src=" front/images/icons/loan.png " alt="LOGO">
-                                </a>
-                            </div>
-    
-                            <div>
-                                <p class="f1-s-1 cl11 p-b-16">
-                                    This is a site for taking loans, you can register with us and get your loan approved if eligible.
-                                </p>
-    
-                                <p class="f1-s-1 cl11 p-b-16">
-                                    Any questions? Call us on +91-9874563210
-                                </p>
-    
-                                <div class="p-t-15">
-                                    <a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
-                                        <span class="fab fa-facebook-f"></span>
-                                    </a>
-    
-                                    <a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
-                                        <span class="fab fa-twitter"></span>
-                                    </a>
-    
-                                    <a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
-                                        <span class="fab fa-pinterest-p"></span>
-                                    </a>
-    
-                                    <a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
-                                        <span class="fab fa-google-plus"></span>
-                                    </a>
-    
-                                    <a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
-                                        <span class="fab fa-youtube"></span>
-									</a>
-									
-
-								
-								</div>
-								<br/>
-                            </div>
-                        </div>
-    
-
+		<div class="row m-rl-10 justify-content-around" style="margin-top:50px;">
+			<div class="card" style="width: 18rem; border-width: 0px;">
+				<a onclick="toFinal()" style=" cursor: pointer;">
+					<div class="card-body" style="background-color:lightblue;">
+						<h5 class="card-title" style="text-align: center;font-size:large;color:rgb(5, 5, 5);">2 years
+						</h5>
+						<h6 class="card-subtitle mb-2 text-muted" style="color: black;">Interest : 11% </h6>
+						<p class="card-text" style="color: black;">EMI : Rs. 1234</p>
 					</div>
-				
-                </div>
-            </div>
-    
-            <div class="bg11">
-                <div class="container size-h-4 flex-c-c p-tb-15">
-                    <span class="f1-s-1 cl0 txt-center">
-                        <a href="#" class="f1-s-1 cl10 hov-link1">Copyright &copy;<script>document.write(new Date().getFullYear()); </script></a>
-                    </span>
-                </div>
-            </div>
-        </footer>
-    
-        <!-- Back to top -->
-        <div class="btn-back-to-top" id="myBtn">
-            <span class="symbol-btn-back-to-top">
-                <span class="fas fa-angle-up"></span>
-            </span>
-        </div>
-    
-        <!-- Modal Video 01-->
-        <div class="modal fade" id="modal-video-01" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document" data-dismiss="modal">
-                <div class="close-mo-video-01 trans-0-4" data-dismiss="modal" aria-label="Close">&times;</div>
-    
-                <div class="wrap-video-mo-01">
-                    
-                </div>
-            </div>
-        </div>
-    
-    <!--===============================================================================================-->	
-        <script src=" front/vendor/jquery/jquery-3.2.1.min.js "></script>
-    <!--===============================================================================================-->
-        <script src=" front/vendor/animsition/js/animsition.min.js "></script>
-    <!--===============================================================================================-->
-        <script src=" front/vendor/bootstrap/js/popper.js "></script>
-        <script src=" front/vendor/bootstrap/js/bootstrap.min.js "></script>
-    <!--===============================================================================================-->
-        <script src=" front/js/main.js "></script>
-    
-    </body>
-    </html>
+			</div>
+			</a>
+			<div class="card" style="width: 18rem;">
+				<a  onclick="toFinal()" style=" cursor: pointer;">
+					<div class="card-body" style="background-color: aqua;">
+						<h5 class="card-title" style="text-align: center;font-size:large;color:rgb(0, 0, 0);">5 years
+						</h5>
+						<h6 class="card-subtitle mb-2 text-muted" style="color: black;">Interest : 11% </h6>
+						<p class="card-text" style="color: black;">EMI : Rs. 1234</p>
+					</div>
+			</div>
+			</a>
+			<div class="card" style="width: 18rem;">
+				<a  onclick="toFinal()" style=" cursor: pointer;">
+					<div class="card-body" style="background-color:bisque;">
+						<h5 class="card-title" style="text-align: center;font-size:large;color:rgb(0, 0, 0);">7 years
+						</h5>
+						<h6 class="card-subtitle mb-2 text-muted" style="color: black;">Interest : 11% </h6>
+						<p class="card-text" style="color: black;">EMI : Rs. 1234</p>
+					</div>
+			</div>
+			</a>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer>
+		<div class="bg2 p-t-40 p-b-25" style="margin-top: 40px;">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-lg-6 p-b-20">
+						<div class="size-h-2 flex-s-c">
+							<a href="test.html"
+								onclick="return confirm('Are you sure? You want to continue to home page. Your session will be terminated')">
+								<img class="max-s-full" src=" front/images/icons/loan.png " alt="LOGO">
+							</a>
+						</div>
+
+						<div>
+							<p class="f1-s-1 cl11 p-b-16">
+								This is a site for taking loans, you can register with us and get your loan approved if
+								eligible.
+							</p>
+
+							<p class="f1-s-1 cl11 p-b-16">
+								Any questions? Call us on +91-9874563210
+							</p>
+
+							<div class="p-t-15">
+								<a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+									<span class="fab fa-facebook-f"></span>
+								</a>
+
+								<a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+									<span class="fab fa-twitter"></span>
+								</a>
+
+								<a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+									<span class="fab fa-pinterest-p"></span>
+								</a>
+
+								<a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+									<span class="fab fa-google-plus"></span>
+								</a>
+
+								<a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+									<span class="fab fa-youtube"></span>
+								</a>
+
+
+
+							</div>
+							<br />
+						</div>
+					</div>
+
+
+				</div>
+
+			</div>
+		</div>
+
+		<div class="bg11">
+			<div class="container size-h-4 flex-c-c p-tb-15">
+				<span class="f1-s-1 cl0 txt-center">
+					<a href="#" class="f1-s-1 cl10 hov-link1">Copyright &copy;
+						<script>document.write(new Date().getFullYear());</script>
+					</a>
+				</span>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<span class="fas fa-angle-up"></span>
+		</span>
+	</div>
+
+	<!-- Modal Video 01-->
+	<div class="modal fade" id="modal-video-01" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog" role="document" data-dismiss="modal">
+			<div class="close-mo-video-01 trans-0-4" data-dismiss="modal" aria-label="Close">&times;</div>
+
+			<div class="wrap-video-mo-01">
+
+			</div>
+		</div>
+	</div>
+
+	<!--===============================================================================================-->
+	<script src=" front/vendor/jquery/jquery-3.2.1.min.js "></script>
+	<!--===============================================================================================-->
+	<script src=" front/vendor/animsition/js/animsition.min.js "></script>
+	<!--===============================================================================================-->
+	<script src=" front/vendor/bootstrap/js/popper.js "></script>
+	<script src=" front/vendor/bootstrap/js/bootstrap.min.js "></script>
+	<!--===============================================================================================-->
+	<script src=" front/js/main.js "></script>
+
+</body>
+
+</html>
