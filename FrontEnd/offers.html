@@ -61,6 +61,31 @@
 		const pan = urlParams.get("pan");
 		console.log(pan);
 
+		//offer details
+		var apiUrl = 'http://localhost:8080/fetch-details?pan=BHNJM4567H';
+		fetch(apiUrl).then(response => {
+			return response.json();
+		}).then(data => {
+			console.log("data: ",data);
+			console.log(data.message.name);
+			document.getElementById("name").innerHTML=data.message.name;
+			document.getElementById("email").innerHTML=data.message.email;
+			document.getElementById("companyName").innerHTML=data.message.companyName;
+			document.getElementById("currentCity").innerHTML=data.message.currentCity;
+			document.getElementById("loanAmt").innerHTML=data.message.loanAmt;
+
+			document.getElementById("offer1_year").innerHTML=data.message.offers[0].tenure+" Years";
+			document.getElementById("offer1_emi").innerHTML="EMI : Rs "+ data.message.offers[0].emi.toFixed(2);
+
+			document.getElementById("offer2_year").innerHTML=data.message.offers[1].tenure+" Years";
+			document.getElementById("offer2_emi").innerHTML="EMI : Rs "+ data.message.offers[1].emi.toFixed(2);
+
+			document.getElementById("offer3_year").innerHTML=data.message.offers[2].tenure+" Years";
+			document.getElementById("offer3_emi").innerHTML="EMI : Rs "+ data.message.offers[2].emi.toFixed(2);
+
+		}).catch(err => {
+		});
+
 		function toFinal() {
 			console.log(this);
 		}
@@ -222,6 +247,7 @@
 				Congratulations!!! You are eligible for loan....
 			</div>
 		</div>
+		<h2 class="div"></h2>
 		<div class="row m-rl-10 justify-content-center" style="margin-top:50px;">
 
 			<div class="card" style="width: 67.5rem;border-width: 0px;box-shadow: 5px 5px 5px #88888888">
@@ -233,23 +259,23 @@
 						<table>
 							<tr>
 								<td>Name: </td>
-								<td>Nihar Tiwari</td>
+								<td id="name"></td>
 							</tr>
 							<tr>
 								<td>Email: </td>
-								<td>abc@gmail.com</td>
+								<td id="email"></td>
 							</tr>
 							<tr>
-								<td>Company Name: </td>
-								<td>LTI</td>
+								<td >Company Name: </td>
+								<td id="companyName"></td>
 							</tr>
 							<tr>
 								<td>Current City: </td>
-								<td>Indore</td>
+								<td id="currentCity"></td>
 							</tr>
 							<tr>
 								<td>Loan Amount: </td>
-								<td>500000</td>
+								<td id="loanAmt"></td>
 							</tr>
 						</table>
 					</li>
@@ -261,37 +287,37 @@
 
 		<div class="card" style="margin-top:50px;">
 			<div class="card-body" style="text-align: center;font-size:large;color:darkmagenta;">
-				!!!!!!!!!!  Best Offers available for You  !!!!!!!!!!
+				!!!!!!!!!! Best Offers available for You !!!!!!!!!!
 			</div>
 		</div>
 		<div class="row justify-content-around" style="margin:50px;">
-			<div class="card" style="width: 18rem; border-width: 0px; border-radius: 5px;box-shadow: 5px 5px 5px #88888888;margin: 10px;">
+			<div class="card"
+				style="width: 18rem; border-width: 0px; border-radius: 5px;box-shadow: 5px 5px 5px #88888888;margin: 10px;">
 				<a onclick="toFinal()" style=" cursor: pointer;">
 					<div class="card-body" style="background-color:lightblue;border-radius: 5px;">
-						<h5 class="card-title" style="text-align: center;font-size:large;color:rgb(5, 5, 5);">2 years
-						</h5>
-						<h6 class="card-subtitle mb-2 text-muted" style="color: black;">Interest : 11% </h6>
-						<p class="card-text" style="color: black;">EMI : Rs. 1234</p>
+						<h5 id="offer1_year" class="card-title" style="text-align: center;font-size:large;color:rgb(5, 5, 5);"></h5>
+						<h6 class="card-subtitle mb-2 text-muted" style="color: black;">Interest : 11%</h6>
+						<p id="offer1_emi" class="card-text" style="color: black;"></p>
 					</div>
 			</div>
 			</a>
-			<div class="card" style="width: 18rem;border-width: 0px; border-radius: 5px;box-shadow: 5px 5px 5px #88888888;margin: 10px;">
-				<a  onclick="toFinal()" style=" cursor: pointer;">
+			<div class="card"
+				style="width: 18rem;border-width: 0px; border-radius: 5px;box-shadow: 5px 5px 5px #88888888;margin: 10px;">
+				<a onclick="toFinal()" style=" cursor: pointer;">
 					<div class="card-body" style="background-color: aqua;border-radius: 5px;">
-						<h5 class="card-title" style="text-align: center;font-size:large;color:rgb(0, 0, 0);">5 years
-						</h5>
-						<h6 class="card-subtitle mb-2 text-muted" style="color: black;">Interest : 11% </h6>
-						<p class="card-text" style="color: black;">EMI : Rs. 1234</p>
+						<h5 id="offer2_year" class="card-title" style="text-align: center;font-size:large;color:rgb(5, 5, 5);"></h5>
+						<h6 class="card-subtitle mb-2 text-muted" style="color: black;">Interest : 11%</h6>
+						<p id="offer2_emi" class="card-text" style="color: black;"></p>
 					</div>
 			</div>
 			</a>
-			<div class="card" style="width: 18rem;border-width: 0px; border-radius: 5px;box-shadow: 5px 5px 5px #88888888;margin: 10px;">
-				<a  onclick="toFinal()" style=" cursor: pointer;">
+			<div class="card"
+				style="width: 18rem;border-width: 0px; border-radius: 5px;box-shadow: 5px 5px 5px #88888888;margin: 10px;">
+				<a onclick="toFinal()" style=" cursor: pointer;">
 					<div class="card-body" style="background-color:bisque;border-radius: 5px;">
-						<h5 class="card-title" style="text-align: center;font-size:large;color:rgb(0, 0, 0);">7 years
-						</h5>
-						<h6 class="card-subtitle mb-2 text-muted" style="color: black;">Interest : 11% </h6>
-						<p class="card-text" style="color: black;">EMI : Rs. 1234</p>
+						<h5 id="offer3_year" class="card-title" style="text-align: center;font-size:large;color:rgb(5, 5, 5);"></h5>
+						<h6 class="card-subtitle mb-2 text-muted" style="color: black;">Interest : 11%</h6>
+						<p id="offer3_emi" class="card-text" style="color: black;"></p>
 					</div>
 			</div>
 			</a>
