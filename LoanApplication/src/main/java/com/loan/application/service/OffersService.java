@@ -33,7 +33,7 @@ public class OffersService {
 			emi=(amt*rate*Math.pow((1+rate), tenure))/(Math.pow((1+rate), tenure)-1);
 			System.out.println(emi);
 			
-			double interest = amt-emi;
+			double interest = (emi*tenure)-amt;
 			OfferDetails offer = new OfferDetails();
 //			arr[i++]=tenure/12;
 			offer.setTenure(tenure/12);
